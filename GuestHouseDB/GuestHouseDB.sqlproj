@@ -89,6 +89,9 @@
     <Build Include="dbo\Tables\Login.sql" />
     <Build Include="dbo\Stored Procedures\spLogin.sql" />
     <Build Include="dbo\Tables\Bookings.sql" />
+    <Build Include="Master\Tables\Roles.sql" />
+    <Build Include="dbo\Stored Procedures\spGetRoles.sql" />
+    <Build Include="dbo\Stored Procedures\spEditManagement.sql" />
     <Build Include="dbo\Stored Procedures\spGetAvailableRooms.sql" />
     <Build Include="Master\Tables\BookingType.sql" />
     <Build Include="dbo\Stored Procedures\spGetBookingType.sql" />

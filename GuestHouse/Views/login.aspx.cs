@@ -25,7 +25,7 @@ namespace GuestHouse
             FormsAuthentication.SignOut();
         }
 
-        protected void loginButton_Click(object sender, EventArgs e)
+        protected void userLoginButton_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Debug.WriteLine(inputEmailAddress.Value);
             System.Diagnostics.Debug.WriteLine(inputPassword.Value);
@@ -59,6 +59,11 @@ namespace GuestHouse
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Your email and password doesn\\'t match')", true);
             }
+        }
+
+        protected void adminLoginButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

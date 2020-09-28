@@ -1,7 +1,9 @@
 ﻿CREATE PROCEDURE [dbo].[spPendingRegistration]
 (
-	@Action nvarchar(10),
-	@Email varchar(50) =null
+	@Action nvarchar(50),
+	@Email varchar(50) =null,
+	@PrimaryRole nvarchar(50)=null,
+	@SecondaryRole nvarchar(50)=null
 )
 AS
 BEGIN
@@ -18,7 +20,9 @@ BEGIN
 			Email,
 			MobileNo,
 			ID,
-			Password
+			Password,
+			PrimaryRole,
+			SecondaryRole
 		)
 		SELECT 
 			FirstName,
@@ -26,7 +30,9 @@ BEGIN
 			Email,
 			MobileNo,
 			ID,
-			Password
+			Password,
+			@PrimaryRole,
+			@SecondaryRole
 		FROM dbo.Registration
 		WHERE Email=@Email;
 

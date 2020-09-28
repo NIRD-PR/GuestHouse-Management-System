@@ -42,12 +42,21 @@ namespace GuestHouse
         protected global::System.Web.UI.HtmlControls.HtmlInputPassword inputPassword;
 
         /// <summary>
-        /// loginButton control.
+        /// userLoginButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button loginButton;
+        protected global::System.Web.UI.WebControls.Button userLoginButton;
+
+        /// <summary>
+        /// adminLoginButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button adminLoginButton;
     }
 }

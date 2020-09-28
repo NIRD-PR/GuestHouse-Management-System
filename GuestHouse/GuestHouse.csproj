@@ -69,6 +69,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="js\CurrentManagement.js" />
+    <Content Include="js\PendingRequest.js" />
     <Content Include="Views\AddBookings.aspx" />
     <Content Include="Views\AddRooms.aspx" />
     <Content Include="js\dist\jquery.simple-checkbox-table.js" />
@@ -89,11 +91,13 @@
     <Content Include="css\styles.css" />
     <Content Include="Views\Bookings.aspx" />
     <Content Include="Views\Dashboard.aspx" />
-    <Content Include="Views\PendingRegistration.aspx" />
+    <Content Include="Views\PendingRequest.aspx" />
+    <Content Include="Views\PendingRequestTrial.aspx" />
     <Content Include="Views\RoomDetails.aspx" />
     <Content Include="js\scripts.js" />
     <Content Include="Views\Register.aspx" />
     <Content Include="register.html" />
+    <Content Include="Views\CurrentManagement.aspx" />
     <Content Include="Views\RoomPricing.aspx" />
     <Content Include="Web.config" />
     <Content Include="Views\login.aspx" />
@@ -138,12 +142,19 @@
     <Compile Include="Views\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\PendingRegistration.aspx.cs">
-      <DependentUpon>PendingRegistration.aspx</DependentUpon>
+    <Compile Include="Views\PendingRequest.aspx.cs">
+      <DependentUpon>PendingRequest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\PendingRegistration.aspx.designer.cs">
-      <DependentUpon>PendingRegistration.aspx</DependentUpon>
+    <Compile Include="Views\PendingRequest.aspx.designer.cs">
+      <DependentUpon>PendingRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PendingRequestTrial.aspx.cs">
+      <DependentUpon>PendingRequestTrial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\PendingRequestTrial.aspx.designer.cs">
+      <DependentUpon>PendingRequestTrial.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\RoomDetails.aspx.cs">
       <DependentUpon>RoomDetails.aspx</DependentUpon>
@@ -168,6 +179,12 @@
     <Compile Include="Views\RoomDetails.aspx.designer.cs">
       <DependentUpon>RoomDetails.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\CurrentManagement.aspx.cs">
+      <DependentUpon>CurrentManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CurrentManagement.aspx.designer.cs">
+      <DependentUpon>CurrentManagement.aspx</DependentUpon>
     <Compile Include="Views\RoomPricing.aspx.cs">
       <DependentUpon>RoomPricing.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
