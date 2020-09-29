@@ -8,9 +8,11 @@
     [AssignRoomID] INT             NOT NULL,
     [NoOfMembers]  INT             NULL,
     [PhoneNo]      NVARCHAR (10)   NOT NULL,
-    [TotalAmount]  DECIMAL (18, 2) NULL,
+    [TotalAmount]  DECIMAL (18, 2) DEFAULT ((0)) NOT NULL,
     PRIMARY KEY CLUSTERED ([BookingID] ASC)
 );
+
+
 
 
 

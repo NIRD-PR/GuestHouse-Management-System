@@ -24,10 +24,7 @@ namespace GuestHouse.Views
                 ListItem LIRoomType = new ListItem("---Select---", "-1");
                 DropDownListRoom.Items.Insert(0, LIRoomType);
 
-                DropDownListBS.DataSource = getData("spGetBookingStatus", null);
-                DropDownListBS.DataBind();
-                ListItem LIBookingStatus = new ListItem("---Select---", "-1");
-                DropDownListBS.Items.Insert(0, LIBookingStatus);
+
 
                 DropDownListGH.DataSource = getData("spGetGuestHouse", null);
                 DropDownListGH.DataBind();
@@ -68,12 +65,12 @@ namespace GuestHouse.Views
 
             if (!isValid)
             {
-                
+
                 foreach (var validationResult in results)
                 {
-                    
-                   // throw new ArgumentException("Please fill all the mandatory fields.");
-                   HttpContext.Current.Response.Write(validationResult.ErrorMessage.ToString());
+
+                    // throw new ArgumentException("Please fill all the mandatory fields.");
+                    HttpContext.Current.Response.Write(validationResult.ErrorMessage.ToString());
                 }
                 return o;
             }
@@ -89,13 +86,13 @@ namespace GuestHouse.Views
                     //  r.InputImage.SaveAs(HttpContext.Current.Server.MapPath("~/RoomImages/" + ActualImageName));
                     sc.Parameters.AddWithValue("@Action", "INSERT");
                     sc.Parameters.AddWithValue("@RoomNumber", r.RoomNumber.Trim());
-                    sc.Parameters.AddWithValue("@RoomPrice", r.RoomPrice.Trim());
-                    sc.Parameters.AddWithValue("@BookingStatusID", r.BookingStatusID);
+                    //sc.Parameters.AddWithValue("@RoomPrice", r.RoomPrice.Trim());
+                    //sc.Parameters.AddWithValue("@BookingStatusID", r.BookingStatusID);
                     sc.Parameters.AddWithValue("@RoomTypeID", r.RoomTypeID);
                     sc.Parameters.AddWithValue("@RoomCapacity", r.RoomCapacity);
                     sc.Parameters.AddWithValue("@RoomDescription", r.RoomDescription.Trim());
                     sc.Parameters.AddWithValue("@GuestHouseID", r.GuestHouseID);
-                    // sc.Parameters.AddWithValue("@RoomImage", ActualImageName.Trim());
+                    //sc.Parameters.AddWithValue("@RoomImage", ActualImageName.Trim());
                     con.Open();
                     sc.ExecuteNonQuery(); System.Diagnostics.Debug.WriteLine("Hello2!");
                     con.Close();

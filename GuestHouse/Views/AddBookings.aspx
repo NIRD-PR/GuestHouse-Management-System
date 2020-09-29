@@ -114,10 +114,12 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainBody" runat="server">
     <div class="container-fluid">
-        <div class="mt-4" id="formnew">
+        <div class="mb-4" id="formnew">
 
             <form role="form" id="newRoom" action="#" method="post" runat="server" style="margin-left: 20px">
-                <h2 class="mt-2">Enter Booking Details</h2>
+                <div class="jumbotron" style="padding-top: 5px; padding-bottom: 5px;">
+                    <h2 class="mt-2" style="color: #007bff; font-family: 'Raleway',sans-serif; font-size: 40px; font-weight: 400; line-height: 72px; margin: 0 0 0px; text-align: left; text-transform: capitalize;">Enter Booking Details</h2>
+                </div>
                 <br />
                 <asp:ScriptManager ID="ScriptManager1" runat="server">
                 </asp:ScriptManager>

@@ -25,6 +25,7 @@ namespace GuestHouse.Views
                 dummy.Columns.Add("BookingTo");
                 dummy.Columns.Add("PhoneNo");
                 dummy.Columns.Add("Address");
+                dummy.Columns.Add("TotalAmount");
                 dummy.Rows.Add();
                 gvBookings.DataSource = dummy;
                 gvBookings.DataBind();
@@ -42,7 +43,7 @@ namespace GuestHouse.Views
             string constr = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT FirstName, LastName, NoOfMembers, BookingFrom,BookingTo,PhoneNo,Address FROM dbo.Bookings", con))
+                using (SqlCommand cmd = new SqlCommand("SELECT FirstName, LastName, NoOfMembers, BookingFrom,BookingTo,PhoneNo,Address,TotalAmount FROM dbo.Bookings", con))
                 {
                     con.Open();
                     using (SqlDataReader sdr = cmd.ExecuteReader())
@@ -57,8 +58,9 @@ namespace GuestHouse.Views
                                 BookingFrom = Convert.ToDateTime(sdr["BookingFrom"].ToString()),
                                 BookingTo = Convert.ToDateTime(sdr["BookingTo"].ToString()),
                                 PhoneNo = sdr["PhoneNo"].ToString(),
-                                Address = sdr["Address"].ToString()
-                            }); ;
+                                Address = sdr["Address"].ToString(),
+                                TotalAmount = Convert.ToDecimal(sdr["TotalAmount"])
+                            });
                         }
                     }
                     con.Close();

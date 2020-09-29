@@ -78,24 +78,6 @@ namespace GuestHouse.Views
         protected global::System.Web.UI.WebControls.RequiredFieldValidator valRT;
 
         /// <summary>
-        /// DropDownListBS control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownListBS;
-
-        /// <summary>
-        /// valBS control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator valBS;
-
-        /// <summary>
         /// room_number control.
         /// </summary>
         /// <remarks>
@@ -130,24 +112,6 @@ namespace GuestHouse.Views
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator valOcc;
-
-        /// <summary>
-        /// rate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox rate;
-
-        /// <summary>
-        /// valRate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator valRate;
 
         /// <summary>
         /// addroom control.

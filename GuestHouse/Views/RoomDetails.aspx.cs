@@ -20,19 +20,19 @@ namespace GuestHouse.Views
 {
     public partial class RoomDetails : System.Web.UI.Page
     {
-      
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-               
+
 
                 this.BindRepeater();
 
-            
+
 
             }
-            
+
         }
 
 
@@ -53,7 +53,7 @@ namespace GuestHouse.Views
                 return DS;
             }
         }
-        
+
 
         [System.Web.Services.WebMethod]
         public static RoomViewModel GetRoomDetails()
@@ -70,7 +70,7 @@ namespace GuestHouse.Views
                 while (rdr.Read())
                 {
                     room.RoomNumber = rdr["RoomNumber"].ToString();
-                    room.RoomPrice = rdr["RoomPrice"].ToString();
+                    room.RoomPrice = rdr["Rate"].ToString();
                     room.BookingStatus = rdr["BookingStatus"].ToString();
                     room.RoomType = rdr["RoomType"].ToString();
                     room.RoomCapacity = Convert.ToInt32(rdr["RoomCapacity"]);
@@ -86,8 +86,8 @@ namespace GuestHouse.Views
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                DropDownList ddlGH=(e.Item.FindControl("ddlGH") as DropDownList);
-                ddlGH.DataSource = getData("spGetGuestHouse",null);
+                DropDownList ddlGH = (e.Item.FindControl("ddlGH") as DropDownList);
+                ddlGH.DataSource = getData("spGetGuestHouse", null);
                 ddlGH.DataBind();
                 ListItem LIGuestHouse = new ListItem("---Select---", "-1");
                 ddlGH.Items.Insert(0, LIGuestHouse);
@@ -100,9 +100,9 @@ namespace GuestHouse.Views
                 ddlBS.DataBind();
                 ListItem LIBookingStatus = new ListItem("---Select---", "-1");
                 ddlBS.Items.Insert(0, LIBookingStatus);
-                string selBS= (e.Item.DataItem as DataRowView)["BookingStatus"].ToString();
+                string selBS = (e.Item.DataItem as DataRowView)["BookingStatus"].ToString();
                 ddlBS.Items.FindByText(selBS).Selected = true;
-               
+
 
                 DropDownList ddlRT = (e.Item.FindControl("ddlRT") as DropDownList);
                 ddlRT.DataSource = getData("spGetRoomType", null);
@@ -111,15 +111,34 @@ namespace GuestHouse.Views
                 ddlRT.Items.Insert(0, LIRoomType);
                 string selRT = (e.Item.DataItem as DataRowView)["RoomType"].ToString();
                 ddlRT.Items.FindByText(selRT).Selected = true;
-            }    
+
+
+                // HtmlTableCell td = (HtmlTableCell)e.Item.FindControl("lblIA"); //Where TD1 is the ID of the Table Cell
+                /*  bool IsActive = bool.Parse((e.Item.FindControl("lblIA") as Label).Text);
+                  HtmlTableRow tr = (HtmlTableRow)e.Item.FindControl("trID");
+                  if (IsActive)
+                  {
+                      //td.Attributes.Add("style", "background-color:Green;");
+                      tr.Attributes.Add("style", "background-color:White");
+
+                  }
+                  else
+                  {
+                       tr.Attributes.Add("style", "background-color:Red;");
+
+                  }
+                */
+            }
         }
-            private void BindRepeater()
+
+        private void BindRepeater()
         {
             string constr = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
             {
-                SqlCommand cmd = new SqlCommand("spGetRoomDetails", con);
+                SqlCommand cmd = new SqlCommand("spRoomDetailsCRUD", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Action", "SELECT");
                 using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
                 {
                     DataTable dt = new DataTable();
@@ -130,12 +149,21 @@ namespace GuestHouse.Views
 
             }
         }
-
+        public string GetRowColor(string item)
+        {
+            bool col = bool.Parse(item);
+            if (!col)
+                return "style=’background-color:red’";
+            else
+                return "style=’background-color:white’";
+        }
         protected void OnEdit(object sender, EventArgs e)
         {
             //Find the reference of the Repeater Item.
             RepeaterItem item = (sender as HtmlButton).Parent as RepeaterItem;
             this.ToggleElements(item, true);
+            //  this.BindRepeater();
+
         }
 
         private void ToggleElements(RepeaterItem item, bool isEdit)
@@ -148,7 +176,7 @@ namespace GuestHouse.Views
 
             //Toggle Labels.
             item.FindControl("lblGH").Visible = !isEdit;
-           
+
             item.FindControl("lblRN").Visible = !isEdit;
             item.FindControl("lblRP").Visible = !isEdit;
             item.FindControl("lblRC").Visible = !isEdit;
@@ -160,7 +188,7 @@ namespace GuestHouse.Views
             item.FindControl("ddlGH").Visible = isEdit;
             //item.FindControl("txtGH").Visible = isEdit;
             item.FindControl("txtRN").Visible = isEdit;
-            item.FindControl("txtRP").Visible = isEdit;
+            //  item.FindControl("txtRP").Visible = isEdit;
             item.FindControl("txtRC").Visible = isEdit;
             item.FindControl("ddlBS").Visible = isEdit;
             item.FindControl("ddlRT").Visible = isEdit;
@@ -173,9 +201,9 @@ namespace GuestHouse.Views
             RepeaterItem item = (sender as HtmlButton).Parent as RepeaterItem;
             int RoomID = int.Parse((item.FindControl("lblRoomID") as Label).Text);
             string RoomNumber = (item.FindControl("txtRN") as TextBox).Text.Trim();
-            string RoomPrice = (item.FindControl("txtRP") as TextBox).Text.Trim();
+            // string RoomPrice = (item.FindControl("txtRP") as TextBox).Text.Trim();
             string RoomCapacity = (item.FindControl("txtRC") as TextBox).Text.Trim();
-            string RoomDescription= (item.FindControl("txtRD") as TextBox).Text.Trim();
+            string RoomDescription = (item.FindControl("txtRD") as TextBox).Text.Trim();
             int GuestHouseID = int.Parse((item.FindControl("ddlGH") as DropDownList).SelectedValue);
             int RoomTypeID = int.Parse((item.FindControl("ddlRT") as DropDownList).SelectedValue);
             int BookingStatusID = int.Parse((item.FindControl("ddlBS") as DropDownList).SelectedValue);
@@ -189,7 +217,7 @@ namespace GuestHouse.Views
                     cmd.Parameters.AddWithValue("@Action", "UPDATE");
                     cmd.Parameters.AddWithValue("@RoomID", RoomID);
                     cmd.Parameters.AddWithValue("@RoomNumber", RoomNumber);
-                    cmd.Parameters.AddWithValue("@RoomPrice", RoomPrice);
+                    //cmd.Parameters.AddWithValue("@RoomPrice", RoomPrice);
                     cmd.Parameters.AddWithValue("@RoomCapacity", RoomCapacity);
                     cmd.Parameters.AddWithValue("@RoomDescription", RoomDescription);
                     cmd.Parameters.AddWithValue("@GuestHouseID", GuestHouseID);
@@ -210,11 +238,12 @@ namespace GuestHouse.Views
 
 
 
-            protected void OnCancel(object sender, EventArgs e)
+        protected void OnCancel(object sender, EventArgs e)
         {
             //Find the reference of the Repeater Item.
             RepeaterItem item = (sender as HtmlButton).Parent as RepeaterItem;
             this.ToggleElements(item, false);
+            // this.BindRepeater();
         }
         protected void OnDelete(object sender, EventArgs e)
         {
@@ -239,7 +268,29 @@ namespace GuestHouse.Views
             this.BindRepeater();
         }
 
-       
+        protected void OnBlock(object sender, EventArgs e)
+        {
+            //Find the reference of the Repeater Item.
+            RepeaterItem item = (sender as LinkButton).Parent as RepeaterItem;
+            // bool IsActive = bool.Parse((item.FindControl("lblIA") as Label).Text);
+            int RoomID = int.Parse((item.FindControl("lblRoomID") as Label).Text);
+            string constr = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand("spRoomDetailsCRUD"))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Action", "BLOCK");
+                    cmd.Parameters.AddWithValue("@RoomID", RoomID);
+                    cmd.Connection = con;
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+            this.BindRepeater();
+        }
+
     }
-    
+
 }

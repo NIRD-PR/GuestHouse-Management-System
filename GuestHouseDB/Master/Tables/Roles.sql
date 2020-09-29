@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Roles]
-(
-	[Role] NVARCHAR(50) NOT NULL PRIMARY KEY
-)
+CREATE TABLE [Master].[Roles] (
+    [Role] NVARCHAR (50) NOT NULL
+);
+

@@ -50,6 +50,8 @@
                         },
                         { 'data': 'PhoneNo' },
                         { 'data': 'Address' },
+                        { 'data': 'TotalAmount' }
+
                     ]
 
                 });
@@ -58,26 +60,33 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainBody" runat="server">
     <main>
-        <div style="margin-top: 20px">
-
-            <form role="form" id="Booking" action="#" method="post" runat="server" style="margin-left: 15px">
-                <asp:Button type="button" class="btn btn-primary" ID="addBooking" runat="server" PostBackUrl="~/Views/AddBookings.aspx" Text="New Booking"></asp:Button>
-                <div style="margin-top: 30px; width: 1500px">
-                    <asp:GridView ID="gvBookings" runat="server" CssClass="gvBookings" HeaderStyle-CssClass="gvHeader" AllowPaging="true" AutoGenerateColumns="false">
-                        <Columns>
-                            <asp:BoundField DataField="FirstName" HeaderText="First Name" />
-                            <asp:BoundField DataField="LastName" HeaderText="Last Name" />
-                            <asp:BoundField DataField="NoOfMembers" HeaderText="Number of Members" />
-                            <asp:BoundField DataField="BookingFrom" HeaderText="Booking From" DataFormatString="{0:MM-dd-yyyy hh:mm tt}" />
-                            <asp:BoundField DataField="BookingTo" HeaderText="Booking To" DataFormatString="{0:MM-dd-yyyy hh:mm tt}" />
-                            <asp:BoundField DataField="PhoneNo" HeaderText="Phone Number" />
-                            <asp:BoundField DataField="Address" HeaderText="Address" />
-                        </Columns>
-                    </asp:GridView>
+        <div class="container-fluid">
+            <div class="mb-4" id="roomDetail">
+                <div class="jumbotron" style="padding-top: 5px; padding-bottom: 5px;">
+                    <h2 class="mt-4" style="color: #007bff; font-family: 'Raleway',sans-serif; font-size: 62px; font-weight: 600; line-height: 72px; margin: 0 0 0px; text-align: center; text-transform: uppercase;">Booking Details</h2>
                 </div>
+                <br />
+
+                <form role="form" id="Booking" action="#" method="post" runat="server" style="margin-left: 15px">
+                    <asp:Button type="button" class="btn btn-primary" ID="addBooking" runat="server" PostBackUrl="~/Views/AddBookings.aspx" Text="New Booking"></asp:Button>
+                    <div style="margin-top: 20px; width: 1500px">
+                        <asp:GridView ID="gvBookings" runat="server" CssClass="gvBookings" HeaderStyle-CssClass="gvHeader" AllowPaging="true" AutoGenerateColumns="false">
+                            <Columns>
+                                <asp:BoundField DataField="FirstName" HeaderText="First Name" />
+                                <asp:BoundField DataField="LastName" HeaderText="Last Name" />
+                                <asp:BoundField DataField="NoOfMembers" HeaderText="Number of Members" />
+                                <asp:BoundField DataField="BookingFrom" HeaderText="Booking From" DataFormatString="{0:MM-dd-yyyy hh:mm tt}" />
+                                <asp:BoundField DataField="BookingTo" HeaderText="Booking To" DataFormatString="{0:MM-dd-yyyy hh:mm tt}" />
+                                <asp:BoundField DataField="PhoneNo" HeaderText="Phone Number" />
+                                <asp:BoundField DataField="Address" HeaderText="Address" />
+                                <asp:BoundField DataField="TotalAmount" HeaderText="Total Amount" />
+                            </Columns>
+                        </asp:GridView>
+                    </div>
 
 
-            </form>
+                </form>
+            </div>
         </div>
     </main>
 </asp:Content>

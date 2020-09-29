@@ -3,7 +3,6 @@
 	@Action nvarchar(10),
 	@RoomID int =null,
 	@RoomNumber nvarchar(8)=null,
-	@RoomPrice nvarchar(10)=null,
 	@BookingStatusID int =null ,
 	@RoomTypeID int=null,
 	@RoomCapacity int=null,
@@ -18,7 +17,7 @@ BEGIN
 
 	IF @Action = 'SELECT'
 	BEGIN
-		SELECT R.RoomID, G.Name,R.RoomNumber,R.RoomPrice,R.RoomCapacity,B.BookingStatus,T.RoomType,R.RoomDescription from dbo.Rooms R join
+		SELECT R.RoomID,R.IsActive,G.Name,T.Rate,R.RoomNumber,R.RoomCapacity,B.BookingStatus,T.RoomType,R.RoomDescription from dbo.Rooms R join
 		Master.BookingStatus B on B.BookingStatusID=R.BookingStatusID join Master.GuestHouseIndex G on G.GuestHouseID=R.GuestHouseID join
 		Master.RoomType T on T.RoomTypeID=R.RoomTypeID
 	END
@@ -29,7 +28,6 @@ BEGIN
 		INSERT INTO dbo.Rooms
 		(
 			RoomNumber ,
-			RoomPrice ,
 			BookingStatusID ,
 			RoomTypeID ,
 			RoomCapacity, 
@@ -39,8 +37,7 @@ BEGIN
 		VALUES
 		(
 			@RoomNumber ,
-			@RoomPrice ,
-			@BookingStatusID,
+			1,
 			@RoomTypeID ,
 			@RoomCapacity ,
 			@RoomDescription ,
@@ -52,7 +49,6 @@ BEGIN
 	BEGIN
 		UPDATE dbo.Rooms	
 		SET RoomNumber=@RoomNumber,
-			RoomPrice=@RoomPrice,
 			BookingStatusID=@BookingStatusID,
 			RoomTypeID=@RoomTypeID,
 			RoomCapacity=@RoomCapacity,
@@ -67,5 +63,11 @@ BEGIN
 		WHERE RoomID=@RoomID
 	END
 
+	IF @Action = 'BLOCK'
+	BEGIN
+		UPDATE dbo.Rooms
+		SET IsActive=IsActive^1
+		WHERE RoomID=@RoomID
+	END
 END
 RETURN 0

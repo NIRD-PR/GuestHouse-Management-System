@@ -16,11 +16,6 @@ namespace GuestHouse.Models
 
         public string RoomImage { get; set; }
 
-        [Required(ErrorMessage = "This is a required field.")]
-        public string RoomPrice { get; set; }
-
-        [Required(ErrorMessage = "This is a required field.")]
-        public int BookingStatusID { get; set; }
 
         [Required(ErrorMessage = "This is a required field.")]
         public int RoomTypeID { get; set; }
@@ -30,9 +25,9 @@ namespace GuestHouse.Models
 
         [Required(ErrorMessage = "This is a required field.")]
         public int GuestHouseID { get; set; }
-       
+
         public string RoomDescription { get; set; }
-       
+
         public HttpPostedFileBase InputImage { get; set; }
 
 

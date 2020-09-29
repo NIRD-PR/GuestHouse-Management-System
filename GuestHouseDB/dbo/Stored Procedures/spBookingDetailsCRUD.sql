@@ -42,6 +42,13 @@ BEGIN
 		UPDATE dbo.Rooms
 		SET BookingStatusID=2
 		WHERE RoomID=@AssignRoomID
+		DECLARE @TotDays INT= DATEDIFF(DAY, @BookingFrom, @BookingTo) ;
+		UPDATE dbo.Bookings
+		SET TotalAmount=@TotDays*T.Rate 
+		FROM
+		dbo.Bookings B inner join dbo.Rooms R on R.RoomID=@AssignRoomID inner join Master.RoomType T on R.RoomTypeID=T.RoomTypeID
+		WHERE B.AssignRoomID=@AssignRoomID
+
 	END
 END
 

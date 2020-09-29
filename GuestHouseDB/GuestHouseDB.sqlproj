@@ -77,11 +77,9 @@
     <Build Include="dbo\Stored Procedures\spRoomDetailsCRUD.sql" />
     <Build Include="dbo\Stored Procedures\spGetGuestById.sql" />
     <Build Include="dbo\Stored Procedures\spInsertGuest.sql" />
-    <Build Include="dbo\Stored Procedures\spInsertRoom.sql" />
     <Build Include="dbo\Stored Procedures\spGetBookingStatus.sql" />
     <Build Include="dbo\Stored Procedures\spGetRoomType.sql" />
     <Build Include="dbo\Stored Procedures\spGetGuestHouse.sql" />
-    <Build Include="dbo\Stored Procedures\spGetRoomDetails.sql" />
     <Build Include="Security\Master.sql" />
     <Build Include="dbo\Tables\Registration.sql" />
     <Build Include="dbo\Stored Procedures\spInsertRegistration.sql" />
@@ -89,7 +87,6 @@
     <Build Include="dbo\Tables\Login.sql" />
     <Build Include="dbo\Stored Procedures\spLogin.sql" />
     <Build Include="dbo\Tables\Bookings.sql" />
-    <Build Include="Master\Tables\Roles.sql" />
     <Build Include="dbo\Stored Procedures\spGetRoles.sql" />
     <Build Include="dbo\Stored Procedures\spEditManagement.sql" />
     <Build Include="dbo\Stored Procedures\spGetAvailableRooms.sql" />
@@ -97,6 +94,7 @@
     <Build Include="dbo\Stored Procedures\spGetBookingType.sql" />
     <Build Include="dbo\Stored Procedures\spGetAvailableRoomTypes.sql" />
     <Build Include="dbo\Stored Procedures\spBookingDetailsCRUD.sql" />
+    <Build Include="Master\Tables\Roles.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="GuestHouseDB.refactorlog" />

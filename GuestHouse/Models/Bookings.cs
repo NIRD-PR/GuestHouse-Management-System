@@ -11,7 +11,7 @@ namespace GuestHouse.Models
     {
         public int BookingID { get; set; }
 
-        [Display(Name ="First Name")]
+        [Display(Name = "First Name")]
         [Required(ErrorMessage = "This is a required field.")]
         public string FirstName { get; set; }
 
@@ -39,6 +39,7 @@ namespace GuestHouse.Models
 
         [DataType(DataType.PhoneNumber)]
         public string PhoneNo { get; set; }
+        public decimal TotalAmount {get; set;}
 
     }
 }

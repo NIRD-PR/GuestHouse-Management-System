@@ -44,8 +44,7 @@ namespace GuestHouse.Views
             string DBCS = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
 
             SqlConnection con = new SqlConnection(DBCS);
-            SqlDataAdapter da = new SqlDataAdapter("Select * from Roles", con);
-
+            SqlDataAdapter da = new SqlDataAdapter("Select * from Master.Roles", con);
             DataSet ds = new DataSet();
             da.Fill(ds);
 

@@ -96,7 +96,6 @@
     <Content Include="Views\RoomDetails.aspx" />
     <Content Include="js\scripts.js" />
     <Content Include="Views\Register.aspx" />
-    <Content Include="register.html" />
     <Content Include="Views\CurrentManagement.aspx" />
     <Content Include="Views\RoomPricing.aspx" />
     <Content Include="Web.config" />
@@ -185,6 +184,7 @@
     </Compile>
     <Compile Include="Views\CurrentManagement.aspx.designer.cs">
       <DependentUpon>CurrentManagement.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\RoomPricing.aspx.cs">
       <DependentUpon>RoomPricing.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
