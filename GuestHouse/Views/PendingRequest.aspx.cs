@@ -45,7 +45,6 @@ namespace GuestHouse.Views
 
             SqlConnection con = new SqlConnection(DBCS);
             SqlDataAdapter da = new SqlDataAdapter("Select * from Master.Roles", con);
-
             DataSet ds = new DataSet();
             da.Fill(ds);
 
