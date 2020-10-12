@@ -7,26 +7,57 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script type="text/javascript">
         $(function () {
-
-            var date1 = $("#<%= booking_from.ClientID %>").flatpickr({
+            const fp1 = document.getElementById('fp1');
+            const fp2 = document.getElementById('fp2');
+            $('#fp1').css("display", "none");
+            $('#fp2').css("display", "none");
+            var tdate1 = flatpickr(fp1, {
                 enableTime: true,
                 dateFormat: "Y-m-d H:i",
                 altInput: true,
                 altFormat: "F j, Y H:i",
                 minDate: "today",
                 maxDate: "",
+                wrap: true,
                 onChange: function (selectedDates, dateStr, instance) {
-                    date2.set('minDate', dateStr)
+                    tdate2.set('minDate', dateStr),
+                        bdate1.set('minDate', dateStr),
+                        bdate2.set('minDate', dateStr)
                 }
 
             });
-            var date2 = $("#<%= booking_to.ClientID %>").flatpickr({
+            var tdate2 = $("#<%= training_to.ClientID %>").flatpickr({
+                enableTime: true,
+
+                dateFormat: "Y-m-d H:i",
+                altInput: true,
+                altFormat: "F j, Y H:i",
+                onChange: function (selectedDates, dateStr, instance) {
+                    tdate1.set('maxDate', dateStr),
+                        bdate1.set('maxDate', dateStr),
+                        bdate2.set('maxDate', dateStr)
+                },
+
+            });
+
+            var bdate1 = $("#<%= booking_from.ClientID %>").flatpickr({
+                enableTime: true,
+                dateFormat: "Y-m-d H:i",
+                altInput: true,
+                altFormat: "F j, Y H:i",
+
+                onChange: function (selectedDates, dateStr, instance) {
+                    bdate2.set('minDate', dateStr)
+                }
+
+            });
+            var bdate2 = $("#<%= booking_to.ClientID %>").flatpickr({
                 enableTime: true,
                 dateFormat: "Y-m-d H:i",
                 altInput: true,
                 altFormat: "F j, Y H:i",
                 onChange: function (selectedDates, dateStr, instance) {
-                    date1.set('maxDate', dateStr)
+                    bdate1.set('maxDate', dateStr)
                 }
             });
 
@@ -37,13 +68,24 @@
                 booking.AssignRoomID = $("#<%=ddlAR.ClientID%> option:selected").val();
                 booking.FirstName = $("#first_name").val();
                 booking.LastName = $("#last_name").val();
+                booking.BookingTypeID = $("#<%=ddlBT.ClientID%> option:selected").val();
                 booking.Address = $("#address").val();
                 booking.BookingFrom = $("#booking_from").val();
                 booking.BookingTo = $("#booking_to").val();
                 booking.NoOfMembers = $("#members").val();
                 booking.PhoneNo = $("#ph_number").val();
 
-                if (booking.AssignRoomID && booking.FirstName && booking.Address && booking.BookingFrom && booking.BookingTo && booking.NoOfMembers && booking.PhoneNo) {
+                //optional fields for training details.
+                booking.trName = $("#training_name").val();
+                booking.trDirector = $("#training_director").val();
+                booking.trFrom = $("#training_from").val();
+                booking.trTo = $("#training_to").val();
+
+                //optional fiels for offficial visit.
+                booking.purpVis = $("#PurpVis").val();
+                booking.cenVis = $("#CenVis").val();
+                booking.visWh = $("#VisWh").val();
+                if (booking.AssignRoomID && booking.FirstName && booking.BookingTypeID && booking.Address && booking.BookingFrom && booking.BookingTo && booking.NoOfMembers && booking.PhoneNo) {
                     $.ajax({
                         type: "POST",
 
@@ -77,6 +119,7 @@
             $("#<%=ddlGH.ClientID%> option:selected").removeAttr('selected');
             $("#<%=ddlRT.ClientID%> option:selected").removeAttr('selected');
             $("#<%=ddlAR.ClientID%> option:selected").removeAttr('selected');
+            $("#<%=ddlBT.ClientID%> option:selected").removeAttr('selected');
             $("#first_name").val('');
             $("#last_name").val('');
             $("#address").val('');
@@ -92,22 +135,80 @@
 
         function showHideBT(dd) {
             var indexVal = dd.selectedIndex;
+            const fp1 = document.getElementById('fp1');
+            const fp2 = document.getElementById('fp2');
             var trainingName = document.getElementById('<%= training_name.ClientID %>');
             var trainingDirector = document.getElementById('<%= training_director.ClientID %>');
+            var trainingFrom = document.getElementById('<%= training_from.ClientID %>');
+            var trainingTo = document.getElementById('<%= training_to.ClientID %>');
             var lblName = document.getElementById('<%= lblTN.ClientID %>');
             var lblDir = document.getElementById('<%= lblTD.ClientID %>');
+            var lblTFrom = document.getElementById('<%= lblTF.ClientID %>');
+            var lblTTo = document.getElementById('<%= lblTT.ClientID %>');
+            var lblCV = document.getElementById('<%= lblCV.ClientID %>');
+            var lblVW = document.getElementById('<%= lblVW.ClientID %>');
+            var lblPV = document.getElementById('<%= lblPV.ClientID %>');
+            var purpVis = document.getElementById('<%= PurpVis.ClientID %>');
+            var visWh = document.getElementById('<%= VisWh.ClientID %>');
+            var cenVis = document.getElementById('<%= CenVis.ClientID %>');
             if (dd.options[indexVal].value == "1")  //If training
             {
-                trainingName.style.display = 'block';    // this will display the textbox
+                trainingName.style.display = 'block';    
                 trainingDirector.style.display = 'block';
+                trainingFrom.style.display = 'block';
+                trainingTo.style.display = 'block';
                 lblName.style.display = 'inherit';
                 lblDir.style.display = 'inherit';
+                lblTFrom.style.display = 'inherit';
+                lblTTo.style.display = 'inherit';
+                fp1.style.display = 'block';
+                fp2.style.display = 'block';
+
+                visWh.style.display = 'none';
+                cenVis.style.display = 'none';
+                purpVis.style.display = 'none';
+                lblCV.style.display = 'none';
+                lblPV.style.display = 'none';
+                lblVW.style.display = 'none';
             }
-            else {
-                trainingName.style.display = 'none';  // this will hide the textbox
+            else if (dd.options[indexVal].value == "2") //if Official Visit
+            {
+                trainingName.style.display = 'none';  
                 trainingDirector.style.display = 'none';
+                trainingFrom.style.display = 'none';
+                trainingTo.style.display = 'none';
                 lblName.style.display = 'none';
                 lblDir.style.display = 'none';
+                lblTFrom.style.display = 'none';
+                lblTTo.style.display = 'none';
+                fp1.style.display = 'none';
+                fp2.style.display = 'none';
+
+                visWh.style.display = 'block';
+                cenVis.style.display = 'block';
+                purpVis.style.display = 'block';
+                lblCV.style.display = 'inherit';
+                lblPV.style.display = 'inherit';
+                lblVW.style.display = 'inherit';
+            }
+            else {
+                trainingName.style.display = 'none';   // if other
+                trainingDirector.style.display = 'none';
+                trainingFrom.style.display = 'none';
+                trainingTo.style.display = 'none';
+                lblName.style.display = 'none';
+                lblDir.style.display = 'none';
+                lblTFrom.style.display = 'none';
+                lblTTo.style.display = 'none';
+                fp1.style.display = 'none';
+                fp2.style.display = 'none';
+
+                visWh.style.display = 'none';
+                cenVis.style.display = 'none';
+                purpVis.style.display = 'none';
+                lblCV.style.display = 'none';
+                lblPV.style.display = 'none';
+                lblVW.style.display = 'none';
             }
         }
     </script>
@@ -135,19 +236,53 @@
                         </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
-                <div class="form-row ml-2 mb-1 mt-3">
-                    <div class="col-md-4">
+
+                <div class="form-row ml-2 mb-4 mt-3">
+                    <div class="col-md-3">
                         <asp:Label runat="server" AssociatedControlID="training_name" Style="display: none;" ID="lblTN">Training Name</asp:Label>
                         <asp:TextBox Type="text" ClientIDMode="Static" CssClass="form-control" ID="training_name" runat="server" Style="display: none;" placeholder="Enter Training Name"></asp:TextBox>
                         <%-- <asp:RequiredFieldValidator ID="valT" runat="server" ErrorMessage="This is a  required field." ForeColor="Red" ControlToValidate="training_name"></asp:RequiredFieldValidator> --%>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <asp:Label runat="server" AssociatedControlID="training_director" Style="display: none;" ID="lblTD">Training Director</asp:Label>
                         <asp:TextBox Type="text" ClientIDMode="Static" CssClass="form-control" ID="training_director" runat="server" Style="display: none;" placeholder="Enter Director of Training"></asp:TextBox>
                         <%--<asp:RequiredFieldValidator ID="valTd" runat="server" ErrorMessage="This is a  required field." ForeColor="Red" ControlToValidate="training_director"></asp:RequiredFieldValidator> --%>
                     </div>
-                </div>
+                    <div class="col-md-3">
 
+                        <div id="fp1">
+                            <asp:Label runat="server" AssociatedControlID="training_from" Style="display: none;" ID="lblTF">Training From</asp:Label>
+                            <asp:TextBox data-input ClientIDMode="Static" class="form-control" ID="training_from" runat="server" Style="display: none;"></asp:TextBox>
+                            <%-- <asp:RequiredFieldValidator ID="valT" runat="server" ErrorMessage="This is a  required field." ForeColor="Red" ControlToValidate="training_name"></asp:RequiredFieldValidator> --%>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div id="fp2">
+                            <asp:Label runat="server" AssociatedControlID="training_to" Style="display: none;" ID="lblTT">Training To</asp:Label>
+                            <asp:TextBox data-input ClientIDMode="Static" class="form-control" ID="training_to" runat="server" Style="display: none;"></asp:TextBox>
+                            <%-- <asp:RequiredFieldValidator ID="valT" runat="server" ErrorMessage="This is a  required field." ForeColor="Red" ControlToValidate="tdValidator> --%>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-row ml-2 mb-4 mt-3">
+                    <div class="col-md-3">
+                        <asp:Label runat="server" AssociatedControlID="PurpVis" Style="display: none;" ID="lblPV">Purpose of Visit</asp:Label>
+                        <asp:TextBox Type="text" ClientIDMode="Static" CssClass="form-control" ID="PurpVis" runat="server" Style="display: none;" placeholder="Enter Purpose"></asp:TextBox>
+                        <%-- <asp:RequiredFieldValidator ID="valT" runat="server" ErrorMessage="This is a  required field." ForeColor="Red" ControlToValidate="training_name"></asp:RequiredFieldValidator> --%>
+                    </div>
+                    <div class="col-md-3">
+                        <asp:Label runat="server" AssociatedControlID="VisWh" Style="display: none;" ID="lblVW">Visiting Whom</asp:Label>
+                        <asp:TextBox Type="text" ClientIDMode="Static" CssClass="form-control" ID="VisWh" runat="server" Style="display: none;" placeholder=""></asp:TextBox>
+                        <%--<asp:RequiredFieldValidator ID="valTd" runat="server" ErrorMessage="This is a  required field." ForeColor="Red" ControlToValidate="training_director"></asp:RequiredFieldValidator> --%>
+                    </div>
+                    <div class="col-md-3">
+                            <asp:Label runat="server" AssociatedControlID="CenVis" Style="display: none;" ID="lblCV">Center Visiting</asp:Label>
+                            <asp:TextBox type="text" ClientIDMode="Static" class="form-control" ID="CenVis" runat="server" Style="display: none;"></asp:TextBox>
+                            <%-- <asp:RequiredFieldValidator ID="valT" runat="server" ErrorMessage="This is a  required field." ForeColor="Red" ControlToValidate="training_name"></asp:RequiredFieldValidator> --%>
+                    </div>
+                </div>
                 <asp:UpdatePanel ID="UpdatePanelRoom" runat="server">
                     <ContentTemplate>
                         <div class="form-row ml-2 mb-1 mt-6">

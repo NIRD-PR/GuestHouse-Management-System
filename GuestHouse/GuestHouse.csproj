@@ -103,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Bookings.cs" />
+    <Compile Include="Models\BookingsViewModel.cs" />
     <Compile Include="Models\RoomModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\RoomViewModel.cs" />

@@ -9,7 +9,15 @@
 	@BookingFrom datetime,
 	@BookingTo datetime,
 	@Address nvarchar(200),
-	@Amount int=null
+	@Amount int=null,
+	@BookingTypeID int,
+	@trName nvarchar(50)=null,
+	@trDirector nvarchar(50)=null,
+	@trFrom datetime=null,
+	@trTo datetime=null,
+	@purpVis nvarchar(100)=null,
+	@visWh nvarchar(50)=null,
+	@cenVis nvarchar(50)=null
 )
 AS
 BEGIN
@@ -26,7 +34,15 @@ BEGIN
 			BookingTo,
 			AssignRoomID,
 			NoOfMembers,
-			PhoneNo
+			PhoneNo,
+			BookingTypeID,
+			TrainingName,
+			TrainingDirector,
+			TrainingFrom,
+			TrainingTo,
+			PurposeOfVisit,
+			VisitingWhom,
+			CenterVisiting
 		)
 		VALUES
 		(
@@ -37,7 +53,15 @@ BEGIN
 			@BookingTo,
 			@AssignRoomID,
 			@Members,
-			@PhoneNo
+			@PhoneNo,
+			@BookingTypeID,
+			@trName,
+			@trDirector,
+			@trFrom,
+			@trTo,
+			@purpVis,
+			@visWh,
+			@cenVis
 		)
 		UPDATE dbo.Rooms
 		SET BookingStatusID=2

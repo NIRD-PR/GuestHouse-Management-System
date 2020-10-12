@@ -153,7 +153,7 @@ namespace GuestHouse.Views
         {
             bool col = bool.Parse(item);
             if (!col)
-                return "style=’background-color:red’";
+                return "style='background-color:#ff4d4d'";
             else
                 return "style=’background-color:white’";
         }
@@ -251,6 +251,7 @@ namespace GuestHouse.Views
             RepeaterItem item = (sender as LinkButton).Parent as RepeaterItem;
             int RoomID = int.Parse((item.FindControl("lblRoomID") as Label).Text);
 
+
             string constr = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
             {
@@ -271,9 +272,9 @@ namespace GuestHouse.Views
         protected void OnBlock(object sender, EventArgs e)
         {
             //Find the reference of the Repeater Item.
-            RepeaterItem item = (sender as LinkButton).Parent as RepeaterItem;
-            // bool IsActive = bool.Parse((item.FindControl("lblIA") as Label).Text);
-            int RoomID = int.Parse((item.FindControl("lblRoomID") as Label).Text);
+            string reason = txtReason.Text.Trim();
+            string date = txtDate.Text.Trim();
+            int RoomID = Convert.ToInt32(hiddenRoom.Text.ToString());
             string constr = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
             {
@@ -281,6 +282,46 @@ namespace GuestHouse.Views
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Action", "BLOCK");
+                    cmd.Parameters.AddWithValue("@RoomID", RoomID);
+                    cmd.Parameters.AddWithValue("@Reason", reason);
+                    cmd.Parameters.AddWithValue("@ReasonDate", date);
+                    cmd.Connection = con;
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+            this.BindRepeater();
+        }
+        protected void ShowBlock_Click(object sender, EventArgs e)
+        {
+            LinkButton lb = sender as LinkButton;
+            string[] commandArgs = lb.CommandArgument.ToString().Split(new char[] { ',' });
+            string RoomID = commandArgs[0];
+            bool isActive = Convert.ToBoolean(commandArgs[1]);
+            if (isActive)
+            {
+                hiddenRoom.Text = RoomID;
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+            }
+            else
+            {
+                Unblock_Click(RoomID);
+            }
+
+        }
+
+        protected void Unblock_Click(string id)
+        {
+           
+            int RoomID = Convert.ToInt32(id.ToString());
+            string constr = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand("spRoomDetailsCRUD"))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Action", "UNBLOCK");
                     cmd.Parameters.AddWithValue("@RoomID", RoomID);
                     cmd.Connection = con;
                     con.Open();
@@ -290,7 +331,6 @@ namespace GuestHouse.Views
             }
             this.BindRepeater();
         }
-
     }
 
 }

@@ -2,7 +2,7 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
+    </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="mainBody" runat="server">
     <main>
@@ -46,9 +46,10 @@
                                             </thead>
                                     </HeaderTemplate>
                                     <ItemTemplate>
-                                        <tr <%# GetRowColor(DataBinder.Eval(Container.DataItem,"IsActive").ToString()) %>>
+                                        <tr <%# GetRowColor(DataBinder.Eval(Container.DataItem,"IsActive").ToString()) %> >
 
                                             <td>
+                                                
                                                 <button id="btnEdit" runat="server" class="button_glyph" onserverclick="OnEdit">
                                                     <span aria-hidden="true" class="fa fa-pencil-alt"></span>
                                                 </button>
@@ -65,7 +66,7 @@
                                                 </asp:LinkButton>
                                             </td>
                                             <td>
-                                                <asp:Label ID="lblRoomID" runat="server" Text='<%# Eval("RoomID") %>' Visible="false" />
+                                                <asp:Label ID="lblRoomID" CssClass="RoomID" runat="server" Text='<%# Eval("RoomID") %>' Visible="false" />
 
                                                 <asp:Label ID="lblGH" runat="server" Text='<%# Eval("Name") %>' />
                                                 <asp:DropDownList ID="ddlGH" runat="server" AutoPostBack="True" DataTextField="Name" DataValueField="GuestHouseID" Width="120px" Height="25px" Visible="false"></asp:DropDownList>
@@ -101,11 +102,8 @@
                                             </td>
                                             <td>
                                                 <asp:Label ID="lblIA" runat="server" Text='<%# Eval("IsActive") %>' Visible="false" />
-                                                <asp:LinkButton ID="BlockButton" runat="server" class="button_glyph" OnClick="OnBlock">
-                                                    <span aria-hidden="true" class="fa fa-ban"></span>
-                                                </asp:LinkButton>
+                                                <asp:LinkButton runat="server" ID="ShowBlock" Text='<%#((bool) Eval("IsActive"))? "Block":"Unblock" %>' CommandArgument='<%# Eval("RoomID") +","+ Eval("IsActive") %>' OnClick="ShowBlock_Click" />                                                                            </td>
                                             </td>
-
 
                                         </tr>
                                     </ItemTemplate>
@@ -120,12 +118,51 @@
                     </div>
 
                     <asp:Button type="button" class="btn btn-primary" ID="addroom" runat="server" PostBackUrl="~/Views/AddRooms.aspx" Text="Add Room"></asp:Button>
+                   
+                    <div class="modal fade" id="BlockModal" tabindex="-1" role="dialog" aria-labelledby="ModalTitle" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">     
+                                    <h4 class="modal-title" id="ModalTitle">Blocking Room Form</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        &times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <asp:Label ID="hiddenRoom" runat="server" Visible="false"/>
+                                    <label for="txtReason">
+                                        Reason</label>
+                                   
+                                    <asp:TextBox ID="txtReason" runat="server" CssClass="form-control" placeholder="Enter Reason"
+                                        />
+                                    <br />
+                                    <label for="txtdate">
+                                       Expected Availability</label>
+                                    <asp:TextBox ID="txtDate" runat="server" TextMode="Date" CssClass="form-control"
+                                        placeholder="Optional"/>
+                                   
+                                    <div id="dvMessage" runat="server" visible="false" class="alert alert-danger">
+                                        <strong>Error!</strong>
+                                        <asp:Label ID="lblMessage" runat="server" />
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="btnBlock" runat="server" class="btn btn-success" onserverclick="OnBlock">
+                                                  Block Room
+                                                </button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                                        Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </form>
 
 
             </div>
         </div>
-        <script type="text/javascript">
+        
+
+<script type="text/javascript">
             function GetConfirmation() {
                 var reply = confirm("Are you sure you want to delete this room?");
                 if (reply) {
@@ -135,6 +172,19 @@
                     return false;
                 }
             }
+
+            function openModal() {
+                $('#BlockModal').modal('show');
+            }
+           /*   $(function () {
+
+              $("#ShowBlockButton").click(function () {
+                    var room_id = $("#lblRoomID").text();
+                    alert(room_id);
+                    $(".modal-body #hiddenRoom").val(room_id);
+                    $('#BlockModal').modal('show');
+                });
+            });*/
         <%--    $(document).ready(function () {
                 $('#datatable').dataTable({
                     bLengthChange: true,
@@ -148,7 +198,7 @@
                 });
             }); --%>
 
-        </script>
+        </script>   
 
     </main>
 </asp:Content>

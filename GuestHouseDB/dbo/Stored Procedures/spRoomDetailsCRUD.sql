@@ -7,7 +7,9 @@
 	@RoomTypeID int=null,
 	@RoomCapacity int=null,
 	@RoomDescription nvarchar(550)=null,
-	@GuestHouseID int=null
+	@GuestHouseID int=null,
+	@Reason nvarchar(500)= null,
+	@ReasonDate date =null
 )
 AS
 BEGIN
@@ -66,7 +68,17 @@ BEGIN
 	IF @Action = 'BLOCK'
 	BEGIN
 		UPDATE dbo.Rooms
-		SET IsActive=IsActive^1
+		SET IsActive=IsActive^1,
+			Reason=@Reason,
+			ReasonDate=@ReasonDate
+		WHERE RoomID=@RoomID
+	END
+	IF @Action ='UNBLOCK'
+	BEGIN
+		UPDATE dbo.Rooms
+		SET IsActive=IsActive^1,
+			Reason=NULL,
+			ReasonDate=NULL
 		WHERE RoomID=@RoomID
 	END
 END

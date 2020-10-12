@@ -114,13 +114,29 @@ namespace GuestHouse.Views
                     sc.Parameters.AddWithValue("@AssignRoomID", b.AssignRoomID);
                     sc.Parameters.AddWithValue("@FirstName", b.FirstName.Trim());
                     sc.Parameters.AddWithValue("@LastName", b.LastName.Trim());
+                    sc.Parameters.AddWithValue("@BookingTypeID", b.BookingTypeID);
                     sc.Parameters.AddWithValue("@Members", b.NoOfMembers);
                     sc.Parameters.AddWithValue("@PhoneNo", b.PhoneNo.Trim());
                     sc.Parameters.AddWithValue("@BookingTo", Convert.ToDateTime(b.BookingTo));
                     sc.Parameters.AddWithValue("@BookingFrom", Convert.ToDateTime(b.BookingFrom));
                     sc.Parameters.AddWithValue("@Address", b.Address.Trim());
+                    
+                    //for training details.
+                    if(b.BookingTypeID==1)
+                    {
+                        sc.Parameters.AddWithValue("@trName", b.trName.Trim());
+                        sc.Parameters.AddWithValue("@trDirector", b.trDirector.Trim());
+                        sc.Parameters.AddWithValue("@trFrom", Convert.ToDateTime(b.trFrom));
+                        sc.Parameters.AddWithValue("@trTo", Convert.ToDateTime(b.trTo));
+                    }
+                    if (b.BookingTypeID == 2)
+                    {
+                        sc.Parameters.AddWithValue("@purpVis", b.purpVis.Trim());
+                        sc.Parameters.AddWithValue("@visWh", b.visWh.Trim());
+                        sc.Parameters.AddWithValue("cenVis", b.cenVis.Trim());
 
-                    con.Open();
+                    }
+                        con.Open();
                     sc.ExecuteNonQuery(); System.Diagnostics.Debug.WriteLine("Hello2!");
                     con.Close();
                 }

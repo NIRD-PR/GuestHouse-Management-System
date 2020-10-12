@@ -8,11 +8,15 @@
     [RoomDescription] NVARCHAR (550) NULL,
     [IsActive]        BIT            DEFAULT ((1)) NOT NULL,
     [GuestHouseID]    INT            NOT NULL,
+    [Reason]          NVARCHAR (500) NULL,
+    [ReasonDate]      DATE           NULL,
     PRIMARY KEY CLUSTERED ([RoomID] ASC),
     CONSTRAINT [FK_Rooms_BookingStatus] FOREIGN KEY ([BookingStatusID]) REFERENCES [Master].[BookingStatus] ([BookingStatusID]),
     CONSTRAINT [FK_Rooms_GuestHouseIndex] FOREIGN KEY ([GuestHouseID]) REFERENCES [Master].[GuestHouseIndex] ([GuestHouseID]),
     CONSTRAINT [FK_Rooms_RoomType] FOREIGN KEY ([RoomTypeID]) REFERENCES [Master].[RoomType] ([RoomTypeID])
 );
+
+
 
 
 

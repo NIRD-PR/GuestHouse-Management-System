@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Services.Description;
 
 namespace GuestHouse.Models
 {
@@ -40,6 +41,20 @@ namespace GuestHouse.Models
         [DataType(DataType.PhoneNumber)]
         public string PhoneNo { get; set; }
         public decimal TotalAmount {get; set;}
+
+        public int BookingTypeID { get; set; }
+
+        //for trainings
+        public string trName { get; set; }
+        public string trDirector { get; set; }
+        public DateTime? trFrom { get; set; }
+        public DateTime? trTo { get; set; }
+
+        public string purpVis { get; set; }
+
+        public string visWh { get; set; }
+
+        public string cenVis { get; set; }
 
     }
 }

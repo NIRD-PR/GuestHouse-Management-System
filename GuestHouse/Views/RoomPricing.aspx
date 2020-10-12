@@ -5,6 +5,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="mainBody" runat="server">
     <main>
         <div class="container-fluid">
+            <div class="jumbotron" style="padding-top: 5px; padding-bottom: 5px;">
+                    <h2 class="mt-4" style="color: #007bff; font-family: 'Raleway',sans-serif; font-size: 62px; font-weight: 600; line-height: 72px; margin: 0 0 0px; text-align: center; text-transform: uppercase;">Room Pricing</h2>
+                </div>
             <div class="table-responsive">
 
                 <form runat="server">
