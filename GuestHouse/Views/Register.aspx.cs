@@ -26,7 +26,7 @@ namespace GuestHouse.Views
         public static object SaveUserDetails(object userData)
         {
             object o = string.Empty;
-            User user= new JavaScriptSerializer().ConvertToType<User>(userData);
+            GuestHouse.Models.User user= new JavaScriptSerializer().ConvertToType<GuestHouse.Models.User>(userData);
             System.Diagnostics.Debug.WriteLine("Hello!");
 
                 using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString))

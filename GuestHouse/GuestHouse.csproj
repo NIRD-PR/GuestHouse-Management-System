@@ -78,6 +78,8 @@
     <Content Include="Views\admin.Master" />
     <Content Include="libman.json" />
     <None Include="packages.config" />
+    <Content Include="Views\User\Dashboard.aspx" />
+    <Content Include="Views\User\user.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -98,6 +100,8 @@
     <Content Include="Views\Register.aspx" />
     <Content Include="Views\CurrentManagement.aspx" />
     <Content Include="Views\RoomPricing.aspx" />
+    <Content Include="Views\User\UserAddBookings.aspx" />
+    <Content Include="Views\User\UserBookings.aspx" />
     <Content Include="Web.config" />
     <Content Include="Views\login.aspx" />
   </ItemGroup>
@@ -192,6 +196,34 @@
     </Compile>
     <Compile Include="Views\RoomPricing.aspx.designer.cs">
       <DependentUpon>RoomPricing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\User\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\User\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\User\user.Master.cs">
+      <DependentUpon>user.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\User\user.Master.designer.cs">
+      <DependentUpon>user.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Views\User\UserAddBookings.aspx.cs">
+      <DependentUpon>UserAddBookings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\User\UserAddBookings.aspx.designer.cs">
+      <DependentUpon>UserAddBookings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\User\UserBookings.aspx.cs">
+      <DependentUpon>UserBookings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\User\UserBookings.aspx.designer.cs">
+      <DependentUpon>UserBookings.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <PropertyGroup>
