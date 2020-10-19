@@ -85,6 +85,7 @@ namespace GuestHouse.Views
                     // string ActualImageName = ImageUniqueName + Path.GetExtension(r.InputImage.FileName);
                     //  r.InputImage.SaveAs(HttpContext.Current.Server.MapPath("~/RoomImages/" + ActualImageName));
                     sc.Parameters.AddWithValue("@Action", "INSERT");
+                    sc.Parameters.AddWithValue("@RoomFloor", r.RoomFloor);
                     sc.Parameters.AddWithValue("@RoomNumber", r.RoomNumber.Trim());
                     //sc.Parameters.AddWithValue("@RoomPrice", r.RoomPrice.Trim());
                     //sc.Parameters.AddWithValue("@BookingStatusID", r.BookingStatusID);

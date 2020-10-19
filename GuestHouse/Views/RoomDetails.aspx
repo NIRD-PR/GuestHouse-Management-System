@@ -21,13 +21,15 @@
                             <ContentTemplate>
                                 <asp:Repeater ID="RoomTable" runat="server" OnItemDataBound="RepeaterItemBound">
                                     <HeaderTemplate>
-                                        <table id="datatable" class="table table-striped" style="border: 1px hidden; width: 1200px; border-collapse: separate; border-spacing: 0 15px;">
+                                        <table id="datatable" class="table table-striped" style="border: 1px hidden; width: 90%; border-collapse: separate; border-spacing: 0 15px;">
                                             <thead>
                                                 <tr style="background-color: #007bff; color: white; font-size: large; font-weight: bold; text-align: center; vertical-align: middle;">
 
                                                     <th scope="col" style="width: 200px">Action
                                                     </th>
                                                     <th scope="col" style="width: 200px">Guest House Name
+                                                    </th>
+                                                     <th scope="col" style="width: 200px">Room Floor
                                                     </th>
                                                     <th scope="col" style="width: 200px">Room Number
                                                     </th>
@@ -71,7 +73,10 @@
                                                 <asp:Label ID="lblGH" runat="server" Text='<%# Eval("Name") %>' />
                                                 <asp:DropDownList ID="ddlGH" runat="server" AutoPostBack="True" DataTextField="Name" DataValueField="GuestHouseID" Width="120px" Height="25px" Visible="false"></asp:DropDownList>
                                             </td>
-
+                                            <td>
+                                                <asp:Label ID="lblRF" runat="server" Text='<%# Eval("RoomFloor") %>' />
+                                                <asp:TextBox ID="txtRF" runat="server" Text='<%# Eval("RoomFloor") %>' Visible="false" Width="50px" />
+                                            </td>
                                             <td>
                                                 <asp:Label ID="lblRN" runat="server" Text='<%# Eval("RoomNumber") %>' />
                                                 <asp:TextBox ID="txtRN" runat="server" Text='<%# Eval("RoomNumber") %>' Visible="false" Width="50px" />

@@ -78,6 +78,24 @@ namespace GuestHouse.Views
         protected global::System.Web.UI.WebControls.RequiredFieldValidator valRT;
 
         /// <summary>
+        /// room_floor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox room_floor;
+
+        /// <summary>
+        /// valRF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valRF;
+
+        /// <summary>
         /// room_number control.
         /// </summary>
         /// <remarks>

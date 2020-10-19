@@ -28,7 +28,11 @@
                                 <asp:DropDownList ID="DropDownListRoom" runat="server" AutoPostBack="True" DataTextField="RoomType" DataValueField="RoomTypeID" Width="120px" Height="25px"></asp:DropDownList>
                                 <asp:RequiredFieldValidator ID="valRT" runat="server" InitialValue="-1" ErrorMessage="Invalid Selection" ForeColor="Red" ControlToValidate="DropDownListRoom"></asp:RequiredFieldValidator>
                             </div>
-
+                            <div class="form-group col-md-4 mb-1">
+                                <label class="required" for="total_room">Room Floor</label>
+                                <asp:TextBox type="number" ClientIDMode="Static" class="form-control" ID="room_floor" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="valRF" runat="server" ErrorMessage="Room Floor is a  required field." ForeColor="Red" ControlToValidate="room_floor"></asp:RequiredFieldValidator>
+                            </div>
                             <div class="form-group col-md-4 mb-1">
                                 <label class="required" for="total_room">Room Number</label>
                                 <asp:TextBox type="number" ClientIDMode="Static" class="form-control" ID="room_number" placeholder="Room Number" runat="server"></asp:TextBox>
@@ -79,10 +83,11 @@
 
                     var room = {};
                     // console.log(DropDownListRoom.SelectedItem.Value);
-
+                    
                     room.RoomNumber = $("#room_number").val();
                     room.RoomCapacity = $("#occupancy").val();
                     room.RoomDescription = $("#desc").val();
+                    room.RoomFloor = $("#room_floor").val();
                     room.RoomTypeID = $("#<%=DropDownListRoom.ClientID%> option:selected").val();
 
                     room.GuestHouseID = $("#<%=DropDownListGH.ClientID%> option:selected").val();
@@ -140,12 +145,13 @@
             function ResetRoomInformation() {
 
                 $("#room_number").val('');
+                $("#room_floor").val('');
                 $("#occupancy").val('');
                 $("#desc").val('');
                 $("#<%=DropDownListRoom.ClientID%> option:selected").removeAttr('selected');
 
                 $("#<%=DropDownListGH.ClientID%> option:selected").removeAttr('selected');
-                $("#room_number").focus();
+                $("#room_floor").focus();
             }
 
         </script>

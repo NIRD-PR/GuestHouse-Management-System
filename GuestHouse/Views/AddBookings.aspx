@@ -137,6 +137,8 @@
             var indexVal = dd.selectedIndex;
             const fp1 = document.getElementById('fp1');
             const fp2 = document.getElementById('fp2');
+            const tn = document.getElementById('tn');
+            const td = document.getElementById('td');
             var trainingName = document.getElementById('<%= training_name.ClientID %>');
             var trainingDirector = document.getElementById('<%= training_director.ClientID %>');
             var trainingFrom = document.getElementById('<%= training_from.ClientID %>');
@@ -153,7 +155,7 @@
             var cenVis = document.getElementById('<%= CenVis.ClientID %>');
             if (dd.options[indexVal].value == "1")  //If training
             {
-                trainingName.style.display = 'block';    
+                trainingName.style.display = 'block';
                 trainingDirector.style.display = 'block';
                 trainingFrom.style.display = 'block';
                 trainingTo.style.display = 'block';
@@ -163,6 +165,8 @@
                 lblTTo.style.display = 'inherit';
                 fp1.style.display = 'block';
                 fp2.style.display = 'block';
+                tn.style.display = 'block';
+                td.style.display = 'block';
 
                 visWh.style.display = 'none';
                 cenVis.style.display = 'none';
@@ -173,7 +177,7 @@
             }
             else if (dd.options[indexVal].value == "2") //if Official Visit
             {
-                trainingName.style.display = 'none';  
+                trainingName.style.display = 'none';
                 trainingDirector.style.display = 'none';
                 trainingFrom.style.display = 'none';
                 trainingTo.style.display = 'none';
@@ -183,6 +187,8 @@
                 lblTTo.style.display = 'none';
                 fp1.style.display = 'none';
                 fp2.style.display = 'none';
+                tn.style.display = 'none';
+                td.style.display = 'none';
 
                 visWh.style.display = 'block';
                 cenVis.style.display = 'block';
@@ -202,6 +208,8 @@
                 lblTTo.style.display = 'none';
                 fp1.style.display = 'none';
                 fp2.style.display = 'none';
+                tn.style.display = 'none';
+                td.style.display = 'none';
 
                 visWh.style.display = 'none';
                 cenVis.style.display = 'none';
@@ -239,21 +247,25 @@
 
                 <div class="form-row ml-2 mb-4 mt-3">
                     <div class="col-md-3">
-                        <asp:Label runat="server" AssociatedControlID="training_name" Style="display: none;" ID="lblTN">Training Name</asp:Label>
-                        <asp:TextBox Type="text" ClientIDMode="Static" CssClass="form-control" ID="training_name" runat="server" Style="display: none;" placeholder="Enter Training Name"></asp:TextBox>
-                        <%-- <asp:RequiredFieldValidator ID="valT" runat="server" ErrorMessage="This is a  required field." ForeColor="Red" ControlToValidate="training_name"></asp:RequiredFieldValidator> --%>
+                        <div id="tn">
+                            <asp:Label runat="server" AssociatedControlID="training_name" Style="display: none;" ID="lblTN">Training Name</asp:Label>
+                            <asp:TextBox Type="text" ClientIDMode="Static" CssClass="form-control" ID="training_name" runat="server" Style="display: none;" placeholder="Enter Training Name"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="valTN" runat="server" ErrorMessage="This is a  required field." ForeColor="Red" ControlToValidate="training_name"></asp:RequiredFieldValidator>
+                        </div>
                     </div>
                     <div class="col-md-3">
-                        <asp:Label runat="server" AssociatedControlID="training_director" Style="display: none;" ID="lblTD">Training Director</asp:Label>
-                        <asp:TextBox Type="text" ClientIDMode="Static" CssClass="form-control" ID="training_director" runat="server" Style="display: none;" placeholder="Enter Director of Training"></asp:TextBox>
-                        <%--<asp:RequiredFieldValidator ID="valTd" runat="server" ErrorMessage="This is a  required field." ForeColor="Red" ControlToValidate="training_director"></asp:RequiredFieldValidator> --%>
+                        <div id="td">
+                            <asp:Label runat="server" AssociatedControlID="training_director" Style="display: none;" ID="lblTD">Training Director</asp:Label>
+                            <asp:TextBox Type="text" ClientIDMode="Static" CssClass="form-control" ID="training_director" runat="server" Style="display: none;" placeholder="Enter Director of Training"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="valTD" runat="server" ErrorMessage="This is a  required field." ForeColor="Red" ControlToValidate="training_director"></asp:RequiredFieldValidator>
+                        </div>
                     </div>
                     <div class="col-md-3">
 
                         <div id="fp1">
                             <asp:Label runat="server" AssociatedControlID="training_from" Style="display: none;" ID="lblTF">Training From</asp:Label>
                             <asp:TextBox data-input ClientIDMode="Static" class="form-control" ID="training_from" runat="server" Style="display: none;"></asp:TextBox>
-                            <%-- <asp:RequiredFieldValidator ID="valT" runat="server" ErrorMessage="This is a  required field." ForeColor="Red" ControlToValidate="training_name"></asp:RequiredFieldValidator> --%>
+                            <asp:RequiredFieldValidator ID="valTF" runat="server" ErrorMessage="This is a  required field." ForeColor="Red" ControlToValidate="training_from"></asp:RequiredFieldValidator>
                         </div>
                     </div>
 
@@ -261,7 +273,7 @@
                         <div id="fp2">
                             <asp:Label runat="server" AssociatedControlID="training_to" Style="display: none;" ID="lblTT">Training To</asp:Label>
                             <asp:TextBox data-input ClientIDMode="Static" class="form-control" ID="training_to" runat="server" Style="display: none;"></asp:TextBox>
-                            <%-- <asp:RequiredFieldValidator ID="valT" runat="server" ErrorMessage="This is a  required field." ForeColor="Red" ControlToValidate="tdValidator> --%>
+                            <asp:RequiredFieldValidator ID="valTT" runat="server" ErrorMessage="This is a  required field." ForeColor="Red" ControlToValidate="training_to"> </asp:RequiredFieldValidator>
                         </div>
                     </div>
 
@@ -278,9 +290,9 @@
                         <%--<asp:RequiredFieldValidator ID="valTd" runat="server" ErrorMessage="This is a  required field." ForeColor="Red" ControlToValidate="training_director"></asp:RequiredFieldValidator> --%>
                     </div>
                     <div class="col-md-3">
-                            <asp:Label runat="server" AssociatedControlID="CenVis" Style="display: none;" ID="lblCV">Center Visiting</asp:Label>
-                            <asp:TextBox type="text" ClientIDMode="Static" class="form-control" ID="CenVis" runat="server" Style="display: none;"></asp:TextBox>
-                            <%-- <asp:RequiredFieldValidator ID="valT" runat="server" ErrorMessage="This is a  required field." ForeColor="Red" ControlToValidate="training_name"></asp:RequiredFieldValidator> --%>
+                        <asp:Label runat="server" AssociatedControlID="CenVis" Style="display: none;" ID="lblCV">Center Visiting</asp:Label>
+                        <asp:TextBox type="text" ClientIDMode="Static" class="form-control" ID="CenVis" runat="server" Style="display: none;"></asp:TextBox>
+                        <%-- <asp:RequiredFieldValidator ID="valT" runat="server" ErrorMessage="This is a  required field." ForeColor="Red" ControlToValidate="training_name"></asp:RequiredFieldValidator> --%>
                     </div>
                 </div>
                 <asp:UpdatePanel ID="UpdatePanelRoom" runat="server">

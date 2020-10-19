@@ -28,6 +28,7 @@ namespace GuestHouse.Models
 
         public string RoomDescription { get; set; }
 
+        public int RoomFloor { get; set; }
         public HttpPostedFileBase InputImage { get; set; }
 
 

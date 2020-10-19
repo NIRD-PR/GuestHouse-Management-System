@@ -176,7 +176,7 @@ namespace GuestHouse.Views
 
             //Toggle Labels.
             item.FindControl("lblGH").Visible = !isEdit;
-
+            item.FindControl("lblRF").Visible = !isEdit;
             item.FindControl("lblRN").Visible = !isEdit;
             item.FindControl("lblRP").Visible = !isEdit;
             item.FindControl("lblRC").Visible = !isEdit;
@@ -186,7 +186,7 @@ namespace GuestHouse.Views
 
             //Toggle TextBoxes.
             item.FindControl("ddlGH").Visible = isEdit;
-            //item.FindControl("txtGH").Visible = isEdit;
+            item.FindControl("txtRF").Visible = isEdit;
             item.FindControl("txtRN").Visible = isEdit;
             //  item.FindControl("txtRP").Visible = isEdit;
             item.FindControl("txtRC").Visible = isEdit;
@@ -200,6 +200,7 @@ namespace GuestHouse.Views
         {
             RepeaterItem item = (sender as HtmlButton).Parent as RepeaterItem;
             int RoomID = int.Parse((item.FindControl("lblRoomID") as Label).Text);
+            int RoomFloor = int.Parse((item.FindControl("txtRF") as Label).Text);
             string RoomNumber = (item.FindControl("txtRN") as TextBox).Text.Trim();
             // string RoomPrice = (item.FindControl("txtRP") as TextBox).Text.Trim();
             string RoomCapacity = (item.FindControl("txtRC") as TextBox).Text.Trim();
@@ -216,6 +217,7 @@ namespace GuestHouse.Views
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Action", "UPDATE");
                     cmd.Parameters.AddWithValue("@RoomID", RoomID);
+                    cmd.Parameters.AddWithValue("@RoomFloor", RoomFloor);
                     cmd.Parameters.AddWithValue("@RoomNumber", RoomNumber);
                     //cmd.Parameters.AddWithValue("@RoomPrice", RoomPrice);
                     cmd.Parameters.AddWithValue("@RoomCapacity", RoomCapacity);

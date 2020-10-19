@@ -9,7 +9,8 @@
 	@RoomDescription nvarchar(550)=null,
 	@GuestHouseID int=null,
 	@Reason nvarchar(500)= null,
-	@ReasonDate date =null
+	@ReasonDate date =null,
+	@RoomFloor int =null
 )
 AS
 BEGIN
@@ -19,7 +20,7 @@ BEGIN
 
 	IF @Action = 'SELECT'
 	BEGIN
-		SELECT R.RoomID,R.IsActive,G.Name,T.Rate,R.RoomNumber,R.RoomCapacity,B.BookingStatus,T.RoomType,R.RoomDescription from dbo.Rooms R join
+		SELECT R.RoomID,R.IsActive,G.Name,T.Rate,R.RoomFloor,R.RoomNumber,R.RoomCapacity,B.BookingStatus,T.RoomType,R.RoomDescription from dbo.Rooms R join
 		Master.BookingStatus B on B.BookingStatusID=R.BookingStatusID join Master.GuestHouseIndex G on G.GuestHouseID=R.GuestHouseID join
 		Master.RoomType T on T.RoomTypeID=R.RoomTypeID
 	END
@@ -34,7 +35,8 @@ BEGIN
 			RoomTypeID ,
 			RoomCapacity, 
 			RoomDescription ,
-			GuestHouseID 
+			GuestHouseID,
+			RoomFloor
 		)
 		VALUES
 		(
@@ -43,7 +45,8 @@ BEGIN
 			@RoomTypeID ,
 			@RoomCapacity ,
 			@RoomDescription ,
-			@GuestHouseID 
+			@GuestHouseID,
+			@RoomFloor
 		)
 	END
 
@@ -55,7 +58,8 @@ BEGIN
 			RoomTypeID=@RoomTypeID,
 			RoomCapacity=@RoomCapacity,
 			RoomDescription=@RoomDescription,
-			GuestHouseID=@GuestHouseID
+			GuestHouseID=@GuestHouseID,
+			RoomFloor=@RoomFloor
 		WHERE RoomID=@RoomID
 	END
 
