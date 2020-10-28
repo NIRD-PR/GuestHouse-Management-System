@@ -15,15 +15,6 @@ namespace GuestHouse.Views
     {
 
         /// <summary>
-        /// newRoom control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm newRoom;
-
-        /// <summary>
         /// ScriptManager1 control.
         /// </summary>
         /// <remarks>
@@ -96,15 +87,6 @@ namespace GuestHouse.Views
         protected global::System.Web.UI.WebControls.TextBox training_director;
 
         /// <summary>
-        /// valTD control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator valTD;
-
-        /// <summary>
         /// lblTF control.
         /// </summary>
         /// <remarks>
@@ -123,15 +105,6 @@ namespace GuestHouse.Views
         protected global::System.Web.UI.WebControls.TextBox training_from;
 
         /// <summary>
-        /// valTF control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator valTF;
-
-        /// <summary>
         /// lblTT control.
         /// </summary>
         /// <remarks>
@@ -148,15 +121,6 @@ namespace GuestHouse.Views
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox training_to;
-
-        /// <summary>
-        /// valTT control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator valTT;
 
         /// <summary>
         /// lblPV control.

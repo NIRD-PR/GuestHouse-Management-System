@@ -7,62 +7,63 @@
     <main>
         <div class="container-fluid">
             <div class="mb-4" id="formnew">
-                <form role="form" id="newRoom" action="#" method="post" runat="server" style="margin-left: 20px">
-                    <div class="jumbotron" style="padding-top: 5px; padding-bottom: 5px;">
-                        <h2 class="mt-4" style="color: #007bff; font-family: 'Raleway',sans-serif; font-size: 40px; font-weight: 400; line-height: 72px; margin: 0 0 0px; text-align: left; text-transform: capitalize;">Enter Room Details</h2>
-                    </div>
-                    <br />
-                    <asp:ScriptManager ID="ScriptManager2" runat="server">
-                    </asp:ScriptManager>
-                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                        <ContentTemplate>
-                            <div class="form-group col-md-8 mb-2">
-                                <label class="required" for="guest_house">Guest House  </label>
-                                &nbsp;&nbsp;&nbsp;&nbsp; 
+
+                <div class="jumbotron" style="padding-top: 5px; padding-bottom: 5px;">
+                    <h2 class="mt-4" style="color: #007bff; font-family: 'Raleway',sans-serif; font-size: 40px; font-weight: 400; line-height: 72px; margin: 0 0 0px; text-align: left; text-transform: capitalize;">Enter Room Details</h2>
+                </div>
+                <br />
+                <asp:ScriptManager ID="ScriptManager2" runat="server">
+                </asp:ScriptManager>
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                    <ContentTemplate>
+                        <div class="form-group col-md-8 mb-2">
+                            <label class="required" for="guest_house">Guest House  </label>
+                            &nbsp;&nbsp;&nbsp;&nbsp; 
                                 <asp:DropDownList ID="DropDownListGH" runat="server" AutoPostBack="True" DataTextField="Name" DataValueField="GuestHouseID" Width="120px" Height="25px"></asp:DropDownList>
-                                <asp:RequiredFieldValidator ID="valGH" runat="server" InitialValue="-1" ErrorMessage="Invalid Selection" ForeColor="Red" ControlToValidate="DropDownListGH"></asp:RequiredFieldValidator>
-                            </div>
-                            <div class="form-group col-md-8 mb-2">
-                                <label class="required" for="room_type">Room Type   </label>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <asp:RequiredFieldValidator ID="valGH" runat="server" InitialValue="-1" ErrorMessage="Invalid Selection" ForeColor="Red" ControlToValidate="DropDownListGH"></asp:RequiredFieldValidator>
+                        </div>
+                        <div class="form-group col-md-8 mb-2">
+                            <label class="required" for="room_type">Room Type   </label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="DropDownListRoom" runat="server" AutoPostBack="True" DataTextField="RoomType" DataValueField="RoomTypeID" Width="120px" Height="25px"></asp:DropDownList>
-                                <asp:RequiredFieldValidator ID="valRT" runat="server" InitialValue="-1" ErrorMessage="Invalid Selection" ForeColor="Red" ControlToValidate="DropDownListRoom"></asp:RequiredFieldValidator>
-                            </div>
-                            <div class="form-group col-md-4 mb-1">
-                                <label class="required" for="total_room">Room Floor</label>
-                                <asp:TextBox type="number" ClientIDMode="Static" class="form-control" ID="room_floor" runat="server"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="valRF" runat="server" ErrorMessage="Room Floor is a  required field." ForeColor="Red" ControlToValidate="room_floor"></asp:RequiredFieldValidator>
-                            </div>
-                            <div class="form-group col-md-4 mb-1">
-                                <label class="required" for="total_room">Room Number</label>
-                                <asp:TextBox type="number" ClientIDMode="Static" class="form-control" ID="room_number" placeholder="Room Number" runat="server"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="valNumber" runat="server" ErrorMessage="Room Number is a  required field." ForeColor="Red" ControlToValidate="room_number"></asp:RequiredFieldValidator>
-                            </div>
-                            <div class="form-group col-md-4 mb-1">
-                                <label class="required" for="occupancy">Occupancy</label>
-                                <asp:TextBox type="number" ClientIDMode="Static" class="form-control" name="occupancy" ID="occupancy" placeholder="Maximum number of occupants" runat="server"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="valOcc" runat="server" ErrorMessage="Occupany is a  required field." ForeColor="Red" ControlToValidate="occupancy"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="valRT" runat="server" InitialValue="-1" ErrorMessage="Invalid Selection" ForeColor="Red" ControlToValidate="DropDownListRoom"></asp:RequiredFieldValidator>
+                        </div>
+                        <div class="form-group col-md-4 mb-1">
+                            <label class="required" for="total_room">Room Floor</label>
+                            <asp:TextBox type="number" ClientIDMode="Static" class="form-control" ID="room_floor" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="valRF" runat="server" ErrorMessage="Room Floor is a  required field." ForeColor="Red" ControlToValidate="room_floor"></asp:RequiredFieldValidator>
+                        </div>
+                        <div class="form-group col-md-4 mb-1">
+                            <label class="required" for="total_room">Room Number</label>
+                            <asp:TextBox type="number" ClientIDMode="Static" class="form-control" ID="room_number" placeholder="Room Number" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="valNumber" runat="server" ErrorMessage="Room Number is a  required field." ForeColor="Red" ControlToValidate="room_number"></asp:RequiredFieldValidator>
+                        </div>
+                        <div class="form-group col-md-4 mb-1">
+                            <label class="required" for="occupancy">Occupancy</label>
+                            <asp:TextBox type="number" ClientIDMode="Static" class="form-control" name="occupancy" ID="occupancy" placeholder="Maximum number of occupants" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="valOcc" runat="server" ErrorMessage="Occupany is a  required field." ForeColor="Red" ControlToValidate="occupancy"></asp:RequiredFieldValidator>
 
-                            </div>
+                        </div>
 
-                            <div class="form-group col-md-8 mb-2">
-                                <label for="desc">Descriptions</label>
-                                <input type="text" class="form-control" name="desc" id="desc" placeholder="">
-                            </div>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-                    <!--<div class="form-group">
+                        <div class="form-group col-md-8 mb-2">
+                            <label for="desc">Descriptions</label>
+                            <input type="text" class="form-control" name="desc" id="desc" placeholder="">
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+                <!--<div class="form-group">
 					<label for="img">Upload Room Image [recommended size is 400 X 400]: </label>
 					<input id="img" type="file" class="form-control" name="img" title="load image"  >
                     <img id="imgRoom" height="150" width="150" style="border:solid" />
 				 p class="help-block">Example block-level help text here.</p
 				<br />
                 </div>-->
+                <div class="form-group col-md-8 mb-2">
                     <asp:Button class="btn btn-primary ml-2 mt-2" ID="addroom" runat="server" Text="Back" OnClientClick="javascript:window.location.href='RoomDetails.aspx'; return false;"></asp:Button>
 
                     <asp:Button class="btn btn-primary ml-2 mt-2" ID="submitBtn" runat="server" Text="Submit" ClientIDMode="Static"></asp:Button>
+                </div>
 
-                </form>
             </div>
         </div>
         <script type="text/javascript">
@@ -83,7 +84,7 @@
 
                     var room = {};
                     // console.log(DropDownListRoom.SelectedItem.Value);
-                    
+
                     room.RoomNumber = $("#room_number").val();
                     room.RoomCapacity = $("#occupancy").val();
                     room.RoomDescription = $("#desc").val();

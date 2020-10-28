@@ -10,7 +10,7 @@
                 </div>
             <div class="table-responsive">
 
-                <form runat="server">
+                
                     <asp:ScriptManager ID="ScriptManager1" runat="server">
                     </asp:ScriptManager>
                     <div id="dvGrid" style="padding: 10px; width: 1200px; margin-top:30px">
@@ -60,7 +60,7 @@
                             </ContentTemplate>
                         </asp:UpdatePanel>
                     </div>
-                </form>
+                
 
             </div>
         </div>

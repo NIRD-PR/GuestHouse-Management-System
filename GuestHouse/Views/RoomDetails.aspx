@@ -13,7 +13,7 @@
                     <h2 class="mt-4" style="color: #007bff; font-family: 'Raleway',sans-serif; font-size: 62px; font-weight: 600; line-height: 72px; margin: 0 0 0px; text-align: center; text-transform: uppercase;">Room Details</h2>
                 </div>
                 <br />
-                <form id="formTable" action="#" runat="server">
+               
                     <div class="table-responsive">
                         <asp:ScriptManager ID="ScriptManager2" runat="server">
                         </asp:ScriptManager>
@@ -160,7 +160,7 @@
                             </div>
                         </div>
                     </div>
-                </form>
+                
 
 
             </div>

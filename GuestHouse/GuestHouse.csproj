@@ -69,7 +69,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\UserDashboard.css" />
     <Content Include="js\CurrentManagement.js" />
+    <Content Include="js\Dashboard.js" />
     <Content Include="js\PendingRequest.js" />
     <Content Include="Views\AddBookings.aspx" />
     <Content Include="Views\AddRooms.aspx" />

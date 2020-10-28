@@ -207,7 +207,7 @@
                 </div>
                 <br />
 
-                <form role="form" id="Booking" action="#" method="post" runat="server" style="margin-left: 15px">
+               
                     <asp:Button type="button" class="btn btn-primary" ID="addBooking" runat="server" PostBackUrl="~/Views/AddBookings.aspx" Text="New Booking"></asp:Button>
                     <div style="margin-top: 20px; width: 100%; text-align: center">
 
@@ -257,7 +257,7 @@
                     </div>
                     <br />
 
-                </form>
+               
             </div>
         </div>
     </main>
