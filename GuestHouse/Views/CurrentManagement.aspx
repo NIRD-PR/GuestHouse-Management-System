@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Current Management" Language="C#" MasterPageFile="~/Views/admin.Master" AutoEventWireup="true" CodeBehind="CurrentManagement.aspx.cs" Inherits="GuestHouse.Views.CurrentManagement" %>
+﻿<%@ Page Title="Current Management" Language="C#" MasterPageFile="~/Views/Dashboard.Master" AutoEventWireup="true" CodeBehind="CurrentManagement.aspx.cs" Inherits="GuestHouse.Views.CurrentManagement" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="../js/CurrentManagement.js" type="text/javascript"></script>
 </asp:Content>

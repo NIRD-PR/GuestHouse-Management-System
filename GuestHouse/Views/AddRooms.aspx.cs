@@ -17,6 +17,12 @@ namespace GuestHouse.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            LoginUser user = Session["user"] as LoginUser;
+            if (!(user.HasPrimaryRole("admin") || user.HasSecondaryRole("admin")))
+            {
+                Response.Redirect("logout.aspx");
+            }
+
             if (!IsPostBack)
             {
                 DropDownListRoom.DataSource = getData("spGetRoomType", null);

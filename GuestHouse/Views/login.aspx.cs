@@ -9,6 +9,7 @@ using System.Web.Security;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI.HtmlControls;
+using GuestHouse.Models;
 
 namespace GuestHouse
 {
@@ -21,11 +22,11 @@ namespace GuestHouse
         {
             inputEmailAddress.Attributes.Add("type", "email");
             inputEmailAddress.Attributes["type"] = "email";
-            Session.Abandon();
+            //Session.Abandon();
             FormsAuthentication.SignOut();
         }
 
-        protected void userLoginButton_Click(object sender, EventArgs e)
+        protected void loginButton_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Debug.WriteLine(inputEmailAddress.Value);
             System.Diagnostics.Debug.WriteLine(inputPassword.Value);
@@ -48,10 +49,27 @@ namespace GuestHouse
             con.Close();
             if (dt.Rows.Count > 0)
             {
-                Session["email"] = inputEmailAddress.Value;
-                System.Diagnostics.Debug.WriteLine(Session["email"]);
-                //Response.Redirect("Dashboard.aspx");
-                //Response.Redirect("Dashboard.aspx", false);
+                System.Diagnostics.Debug.WriteLine(dt.Rows[0].Field<String>("FirstName"));
+                //var convertedList = (from rw in dt.AsEnumerable()
+                //                     select new MyObj()
+                //                     {
+                //                         ID = Convert.ToInt32(rw["ID"]),
+                //                         Name = Convert.ToString(rw["Name"])
+                //                     }).ToList();
+
+                var rw = dt.Rows[0];
+                LoginUser user = new LoginUser();
+                user.ID = rw.Field<String>("ID");
+                user.FirstName = rw.Field<String>("FirstName");
+                user.LastName = rw.Field<String>("LastName");
+                user.MobileNo = rw.Field<String>("MobileNo");
+                user.Email = rw.Field<String>("Email");
+                user.PrimaryRole = rw.Field<String>("PrimaryRole");
+                user.SecondaryRole = rw.Field<String>("SecondaryRole");
+
+                Session["user"] = user;
+                //System.Diagnostics.Debug.WriteLine(Session["email"]);
+                Response.Redirect("Dashboard.aspx", false);
                 //Context.ApplicationInstance.CompleteRequest();
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Login Successful')", true);
             }
@@ -61,9 +79,5 @@ namespace GuestHouse
             }
         }
 
-        protected void adminLoginButton_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

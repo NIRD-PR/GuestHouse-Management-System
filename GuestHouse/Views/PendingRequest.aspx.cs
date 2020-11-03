@@ -9,6 +9,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Web.Script.Serialization;
 using Newtonsoft.Json;
+using GuestHouse.Models;
 
 namespace GuestHouse.Views
 {
@@ -16,7 +17,11 @@ namespace GuestHouse.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            LoginUser user = Session["user"] as LoginUser;
+
+            if (!user.HasPrimaryRole("admin")) {
+                Response.Redirect("logout.aspx");
+            }
         }
 
         [System.Web.Services.WebMethod]
