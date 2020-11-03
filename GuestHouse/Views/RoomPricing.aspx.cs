@@ -7,12 +7,19 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Configuration;
 using System.Data.SqlClient;
+using GuestHouse.Models;
 namespace GuestHouse.Views
 {
     public partial class RoomPricing : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            LoginUser user = Session["user"] as LoginUser;
+            if (!user.HasPrimaryRole("admin"))
+            {
+                Response.Redirect("logout.aspx");
+            }
+
             if (!this.IsPostBack)
             {
                 this.BindGrid();

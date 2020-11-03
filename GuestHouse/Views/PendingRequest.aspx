@@ -1,4 +1,4 @@
-﻿<%@ Page Title="PendingRequest" Language="C#" MasterPageFile="~/Views/admin.Master" AutoEventWireup="true" CodeBehind="PendingRequest.aspx.cs" Inherits="GuestHouse.Views.PendingRequest" %>
+﻿<%@ Page Title="PendingRequest" Language="C#" MasterPageFile="~/Views/Dashboard.Master" AutoEventWireup="true" CodeBehind="PendingRequest.aspx.cs" Inherits="GuestHouse.Views.PendingRequest" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="../js/PendingRequest.js" type="text/javascript"></script>    

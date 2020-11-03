@@ -1,4 +1,4 @@
-﻿<%@ Page Title="PendingRequestTrial" Language="C#" MasterPageFile="~/Views/admin.Master" AutoEventWireup="true" CodeBehind="PendingRequestTrial.aspx.cs" Inherits="GuestHouse.Views.PendingRegistration" %>
+﻿<%@ Page Title="PendingRequestTrial" Language="C#" MasterPageFile="~/Views/Dashboard.Master" AutoEventWireup="true" CodeBehind="PendingRequestTrial.aspx.cs" Inherits="GuestHouse.Views.PendingRegistration" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="../js/dist/jquery.simple-checkbox-table.js"></script>
