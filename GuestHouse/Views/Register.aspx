@@ -13,23 +13,47 @@
     <link href="../css/styles.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript">
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>-->
+    <script type="text/javascript"> 
+        /*
+        $(document).ready(function () {
+            $('#registrationForm').validate({
+                rules: {
+                    inputPassword: {
+                        required: true,
+                        minlength: 8
+                    },
+                    inputConfirmPassword: {
+                        required: true,
+                        minlength: 8,
+                        equalTo: "#password"
+                    },
+                    messages: {
+                        password: " Enter Password",
+                        confirmpassword: " Enter Confirm Password Same as Password"
+                    }
+                }
+            });
+        });
+        */
+
         $(document).ready(function () {
             $('#registrationForm').submit(function (e) {
-                
+                console.log("reaches here");
                 e.preventDefault();
                 var guest = {};
                 guest.FirstName = $('#inputFirstName').val();
                 guest.LastName = $('#inputLastName').val();
-                guest.EmailAddress = $('#inputEmailAddress').val();
+                guest.Email = $('#inputEmailAddress').val();
                 guest.MobileNo = $('#inputMobileNumber').val();
-                guest.ID = $('#inputPersonID').val(); 
+                guest.ID = $('#inputPersonID').val();
+                guest.Password = $('#inputPassword').val();
                 $.ajax({
-                    url: 'Register.aspx/SaveGuestDetails',
+                    url: 'Register.aspx/SaveUserDetails',
                     type: "POST",
                     
                     contentType: 'application/json;charset=utf-8',
-                    data: JSON.stringify({guestData:JSON.parse(JSON.stringify(guest))}),
+                    data: JSON.stringify({userData:JSON.parse(JSON.stringify(guest))}),
                     success: function (result) {
                         alert('success');
                     },
@@ -82,12 +106,12 @@
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
                                 <div class="card-body">
-                                    <form id="registrationForm" action="#" method="POST">
+                                    <form id="registrationForm" action="#" method="post">
                                         <div class="form-row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="small mb-1" for="inputFirstName">First Name</label>
-                                                    <input class="form-control py-4" id="inputFirstName" type="text" autocapitalize="word" placeholder="Enter first name" required />
+                                                    <label class="small mb-1 required" for="inputFirstName">First Name</label>
+                                                    <input class="form-control py-4" id="inputFirstName" type="text" autocapitalize="word" placeholder="Enter first name" required="required" />
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -100,32 +124,32 @@
                                         <div class="form-row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="small mb-1" for="inputMobileNumber">Mobile No.</label>
-                                                    <input class="form-control py-4" id="inputMobileNumber" type="tel" placeholder="Enter mobile number" required />
+                                                    <label class="small mb-1 required" for="inputMobileNumber">Mobile No.</label>
+                                                    <input class="form-control py-4" id="inputMobileNumber" type="tel" placeholder="Enter mobile number" required="required" />
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="small mb-1" for="inputPersonID">ID</label>
-                                                    <input class="form-control py-4" id="inputPersonID" type="text" placeholder="Enter ID" required />
+                                                    <label class="small mb-1 required" for="inputPersonID">ID</label>
+                                                    <input class="form-control py-4" id="inputPersonID" type="text" placeholder="Enter ID" required="required" />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="small mb-1" for="inputEmailAddress">Email</label>
-                                            <input class="form-control py-4" id="inputEmailAddress" type="email" aria-describedby="emailHelp" placeholder="Enter email address" required />
+                                            <label class="small mb-1 required" for="inputEmailAddress">Email</label>
+                                            <input class="form-control py-4" id="inputEmailAddress" type="email" aria-describedby="emailHelp" placeholder="Enter email address" required="required" />
                                         </div>
                                         <div class="form-row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="small mb-1" for="inputPassword">Password</label>
-                                                    <input class="form-control py-4" id="inputPassword" type="password" placeholder="Enter password" required />
+                                                    <label class="small mb-1 required" for="inputPassword">Password</label>
+                                                    <input class="form-control py-4" id="inputPassword" type="password" placeholder="Enter password" required="required" />
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="small mb-1" for="inputConfirmPassword">Confirm Password</label>
-                                                    <input class="form-control py-4" id="inputConfirmPassword" type="password" placeholder="Confirm password" required />
+                                                    <label class="small mb-1 required" for="inputConfirmPassword">Confirm Password</label>
+                                                    <input class="form-control py-4" id="inputConfirmPassword" type="password" placeholder="Confirm password" required="required" />
                                                 </div>
                                             </div>
                                         </div>

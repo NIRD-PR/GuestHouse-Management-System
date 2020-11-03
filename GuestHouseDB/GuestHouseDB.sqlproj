@@ -6,7 +6,7 @@
     <Name>GuestHouseDB</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{c9fab769-fa6c-45b9-8deb-87682f7a088a}</ProjectGuid>
+    <ProjectGuid>{da4b8bf1-3d68-4948-921b-1d0484d40a32}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
@@ -74,9 +74,30 @@
     <Build Include="Master\Tables\PaymentTypes.sql" />
     <Build Include="dbo\Tables\Rooms.sql" />
     <Build Include="Master\Tables\RoomType.sql" />
+    <Build Include="dbo\Stored Procedures\spRoomDetailsCRUD.sql" />
     <Build Include="dbo\Stored Procedures\spGetGuestById.sql" />
     <Build Include="dbo\Stored Procedures\spInsertGuest.sql" />
+    <Build Include="dbo\Stored Procedures\spGetBookingStatus.sql" />
+    <Build Include="dbo\Stored Procedures\spGetRoomType.sql" />
+    <Build Include="dbo\Stored Procedures\spGetGuestHouse.sql" />
     <Build Include="Security\Master.sql" />
-    <Build Include="dbo\Stored Procedures\spInsertRoom.sql" />
+    <Build Include="dbo\Tables\Registration.sql" />
+    <Build Include="dbo\Stored Procedures\spInsertRegistration.sql" />
+    <Build Include="dbo\Stored Procedures\spPendingRegistration.sql" />
+    <Build Include="dbo\Tables\Login.sql" />
+    <Build Include="dbo\Stored Procedures\spLogin.sql" />
+    <Build Include="dbo\Tables\Bookings.sql" />
+    <Build Include="dbo\Stored Procedures\spGetRoles.sql" />
+    <Build Include="dbo\Stored Procedures\spEditManagement.sql" />
+    <Build Include="dbo\Stored Procedures\spGetAvailableRooms.sql" />
+    <Build Include="Master\Tables\BookingType.sql" />
+    <Build Include="dbo\Stored Procedures\spGetBookingType.sql" />
+    <Build Include="dbo\Stored Procedures\spGetAvailableRoomTypes.sql" />
+    <Build Include="dbo\Stored Procedures\spBookingDetailsCRUD.sql" />
+    <Build Include="Master\Tables\Roles.sql" />
+    <Build Include="dbo\Stored Procedures\spFreeRooms.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="GuestHouseDB.refactorlog" />
   </ItemGroup>
 </Project>

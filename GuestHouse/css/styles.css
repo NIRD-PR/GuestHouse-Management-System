@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /*!
 * Start Bootstrap - SB Admin v6.0.1 (https://startbootstrap.com/templates/sb-admin)
 * Copyright 2013-2020 Start Bootstrap
@@ -1683,12 +1683,13 @@ pre code {
   margin-bottom: 1rem;
   color: #212529;
 }
-.table th,
-.table td {
-  padding: 0.75rem;
-  vertical-align: top;
-  border-top: 1px solid #dee2e6;
-}
+    .table th,
+    .table td {
+        padding: 0.75rem;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+        
+    }
 .table thead th {
   vertical-align: bottom;
   border-bottom: 2px solid #dee2e6;
@@ -10259,4 +10260,87 @@ body {
 }
 .sb-sidenav-light .sb-sidenav-footer {
   background-color: #e9ecef;
+}
+
+/*CUSTOM CSS - NOT BOOTSTRAP -  DO NOT DELETE*/
+td,th {
+    text-align: center;
+    vertical-align: middle;
+    height:40px;
+}
+
+.button_glyph {
+    transition-duration: 0.4s;
+    border-radius: 6px;
+    border: 1px solid #007bff;
+   margin:2px 2px 2px 2px;
+}
+
+.button_glyph:hover {
+    background-color: #007bff; 
+    color: white;
+}
+
+.required:after {
+    content: " *";
+    color: red;
+}
+
+.gvBookings {
+    width:1200px;
+    border: none 0px transparent;
+    
+}
+.gvHeader {
+    background-color: #007bff;
+    font-family: Arial;
+    color: White;
+    border: none 0px transparent;
+    height: 25px;
+    text-align: center;
+    font-size: 16px;
+}
+.gvRow {
+    padding-bottom: 30px;
+}
+
+.hiddencol {
+    display: none;
+}
+
+.ui-dialog.bookings-dialog .ui-widget-header {
+    background: #dc3545;
+    border: 0;
+    color: #fff;
+    font-weight: normal;
+}
+.ui-dialog.bookings-dialog .ui-dialog-content {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    overflow: auto;
+    position: relative;
+    padding: 2px !important;
+    margin: 0;
+}
+.ui-widget.bookings-dialog {
+    font-family: Verdana,Arial,sans-serif;
+    font-size: 0.9em;
+}
+
+.ui-widget-content.bookings-dialog {
+    background: #F9F9F9;
+    border: 1px solid #90d93f;
+    color: #222222;
+}
+.ui-dialog.bookings-dialog .ui-dialog-titlebar {
+    padding: 0.1em .5em;
+    position: relative;
+    font-size: 1.1em;
+}
+.ui-dialog.bookings-dialog {
+    left: 0;
+    outline: 0 none;
+    padding: 0px !important;
+    position: absolute;
+    top: 0;
 }

@@ -11,7 +11,18 @@ namespace GuestHouse.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            System.Diagnostics.Debug.WriteLine(Session["user"]);
+            ///*
+            if (Session["user"] == null) {
+                Response.Redirect("Login.aspx");
+            }
+            //*/
         }
+        /*
+        protected void logoutButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("login.aspx");
+        }
+        */
     }
 }

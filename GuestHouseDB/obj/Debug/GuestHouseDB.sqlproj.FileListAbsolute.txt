@@ -1,5 +1,0 @@
-D:\Developer\GuestHouseManagementSystem\GuestHouseDB\bin\Debug\GuestHouseDB.dacpac
-D:\Developer\GuestHouseManagementSystem\GuestHouseDB\bin\Debug\GuestHouseDB.dll
-D:\Developer\GuestHouseManagementSystem\GuestHouseDB\bin\Debug\GuestHouseDB.pdb
-D:\Developer\GuestHouseManagementSystem\GuestHouseDB\obj\Debug\GuestHouseDB.dll
-D:\Developer\GuestHouseManagementSystem\GuestHouseDB\obj\Debug\GuestHouseDB.pdb

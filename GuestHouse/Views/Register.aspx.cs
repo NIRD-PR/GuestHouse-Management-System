@@ -23,47 +23,30 @@ namespace GuestHouse.Views
        
 
         [System.Web.Services.WebMethod]
-        public static object SaveGuestDetails(object guestData)
+        public static object SaveUserDetails(object userData)
         {
             object o = string.Empty;
-           // List<Guest> GuestDetails = new JavaScriptSerializer().ConvertToType<List<Guest>>(guestData);
-           Guest g= new JavaScriptSerializer().ConvertToType<Guest>(guestData);
+            GuestHouse.Models.User user= new JavaScriptSerializer().ConvertToType<GuestHouse.Models.User>(userData);
             System.Diagnostics.Debug.WriteLine("Hello!");
-           
-                System.Diagnostics.Debug.WriteLine("Hello!");
-                /*   var context = new ValidationContext(g, serviceProvider: null, items: null);
-                      var results = new List<ValidationResult>();
 
-                      var isValid = Validator.TryValidateObject(g, context,results);
-
-                      if(!isValid)
-                      {
-                          foreach( var validationResult in results)
-                          {
-                              throw new ArgumentException("Please fill all the mandatory fields.");
-                          }
-                      }
-                  */
-               // string sql= @"insert into dbo.Guest(FirstName,LastName,EmailAddress,MobileNo,ID)
-                          //  values(@FirstName,@LastName,@EmailAddress,@MobileNo,ID);";
                 using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString))
                 {
                     try
                     {
-                        SqlCommand sc = new SqlCommand("dbo.spInsertGuest", con);
-                       sc.CommandType = CommandType.StoredProcedure;
+                        SqlCommand sc = new SqlCommand("dbo.spInsertRegistration", con);
+                        sc.CommandType = CommandType.StoredProcedure;
                         
-                        sc.Parameters.AddWithValue("@FirstName", g.FirstName.Trim());
-                        sc.Parameters.AddWithValue("@LastName", g.LastName.Trim());
-                        sc.Parameters.AddWithValue("@EmailAddress", g.EmailAddress.Trim());
-                        sc.Parameters.AddWithValue("@MobileNo", g.MobileNo.Trim());
-                        sc.Parameters.AddWithValue("@ID", g.ID.Trim());
+                        sc.Parameters.AddWithValue("@FirstName", user.FirstName.Trim());
+                        sc.Parameters.AddWithValue("@LastName", user.LastName.Trim());
+                        sc.Parameters.AddWithValue("@Email", user.Email.Trim());
+                        sc.Parameters.AddWithValue("@MobileNo", user.MobileNo.Trim());
+                        sc.Parameters.AddWithValue("@ID", user.ID.Trim());
+                        sc.Parameters.AddWithValue("@Password", user.Password.Trim());
                         con.Open();
-                       sc.ExecuteNonQuery(); System.Diagnostics.Debug.WriteLine("Hello2!");
+                        sc.ExecuteNonQuery(); System.Diagnostics.Debug.WriteLine("Hello2!");
                         con.Close();
                     }
                     
-
                     catch (Exception ex)
                     {
                         throw ex;
