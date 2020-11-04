@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/admin.Master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="GuestHouse.Views.Dashboard" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Dashboard.Master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="GuestHouse.Views.Dashboard" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <%-- Here We need to write some js code for load google chart with database data --%>
@@ -64,7 +64,7 @@
     <main class="mt-5">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Home</h1>
+                <h1 class="page-header">Overview</h1>
             </div>
         </div>
 
@@ -86,94 +86,81 @@
                             </div>
                             </div>
                      </div> -->
-            <div class="col-lg-3 col-md-6 ">
-                <div class="card bg-primary">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-users fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class="huge">80</div>
-                                <div>Guests Today</div>
+             <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card card-1">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="media d-flex">
+                                <div class="media-body text-left">
+                                    <h3 style="color: mediumslateblue">56</h3>
+                                    <span>Current In House</span>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-users fa-3x float-right" style="color: mediumslateblue"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <a href="#">
-                        <div class="card-footer">
-                            <span class="pull-left">View Details</span>
-                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                            <div class="clearfix"></div>
-                        </div>
-                    </a>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="card panel-red">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-check fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class="huge">18</div>
-                                <div>Upcoming Reservations</div>
+             <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card card-2">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="media d-flex">
+                                <div class="media-body text-left">
+                                    <h3 style="color: dodgerblue">20</h3>
+                                    <span>Rooms Available</span>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-bed fa-3x float-right" style="color: dodgerblue"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <a href="#">
-                        <div class="card-footer panel-green">
-                            <span class="pull-left">View Details</span>
-                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                            <div class="clearfix"></div>
-                        </div>
-                    </a>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="panel panel-yellow">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-bed fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class="huge">34</div>
-                                <div>New Bookings (This Month)</div>
+             <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card card-3">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="media d-flex">
+                                <div class="media-body text-left">
+                                    <h3 style="color: lightcoral">2</h3>
+                                    <span>Rooms Blocked</span>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-ban fa-3x float-right" style="color: lightcoral"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <a href="#">
-                        <div class="card-footer">
-                            <span class="pull-left">View Details</span>
-                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                            <div class="clearfix"></div>
-                        </div>
-                    </a>
                 </div>
             </div>
             <div class="col-xl-3 col-sm-6 col-12">
-        <div class="card">
-          <div class="card-content">
-            <div class="card-body">
-              <div class="media d-flex">
-                <div class="media-body text-left">
-                  <h3 style="color:lightgreen">156</h3>
-                  <span>Guests Today</span>
+                <div class="card card-4">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="media d-flex">
+                                <div class="media-body text-left">
+                                    <h3 style="color: lightgreen">11</h3>
+                                    <span>Check Ins Today</span>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-address-card fa-3x float-right" style="color: lightgreen"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="align-self-center">
-                  <i class="fas fa-users fa-3x float-right" style="color:lightgreen"></i>
-                </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
 
         </div>
+        
+  
 
         <!-- This is the DataTable -->
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-lg-12">
                 <h1 class="page-header">Active Bookings</h1>
             </div>
@@ -255,36 +242,37 @@
         </div>
 
         <div class="modal fade" id="ExtendModal" tabindex="-1" role="dialog" aria-labelledby="ModalTitle" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="ModalTitle">Extend Booking Form</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                    &times;</button>
-                            </div>
-                            <div class="modal-body">
-                                <asp:Label ID="hiddenRoom" runat="server" Visible="false" />
-                                <asp:Label ID="hiddenBooking" runat="server" Visible="false" />
-                                <label for="txtExt">
-                                    Extend by: </label>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="ModalTitle">Extend Booking Form</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <asp:Label ID="hiddenRoom" runat="server" Visible="false" />
+                        <asp:Label ID="hiddenBooking" runat="server" Visible="false" />
+                        <label for="txtExt">
+                            Extend by:
+                        </label>
 
-                                <asp:TextBox  type="number" ID="txtExt" runat="server" CssClass="form-control" placeholder="Enter Number of days" />
-                                <br />
+                        <asp:TextBox type="number" ID="txtExt" runat="server" CssClass="form-control" placeholder="Enter Number of days" />
+                        <br />
 
-                                <div id="dvMessage" runat="server" visible="false" class="alert alert-danger">
-                                    <strong>Error!</strong>
-                                    <asp:Label ID="lblMessage" runat="server" />
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button id="btnExtend" runat="server" class="btn btn-success" onserverclick="OnExtend">
-                                    Extend Booking
-                                </button>
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">
-                                    Close</button>
-                            </div>
+                        <div id="dvMessage" runat="server" visible="false" class="alert alert-danger">
+                            <strong>Error!</strong>
+                            <asp:Label ID="lblMessage" runat="server" />
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button id="btnExtend" runat="server" class="btn btn-success" onserverclick="OnExtend">
+                            Extend Booking
+                        </button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">
+                            Close</button>
+                    </div>
                 </div>
+            </div>
+        </div>
     </main>
 </asp:Content>

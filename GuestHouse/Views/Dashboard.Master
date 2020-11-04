@@ -6,14 +6,15 @@
 <head runat="server">
     <title><%: Page.Title %> - GMS</title>
     <meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="" />
-	<meta name="author" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="">
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link href="../../css/UserDashboard.css" rel="stylesheet" />
+    <%--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> --%>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="../css/UserDashboard.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/metismenu/dist/metisMenu.min.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
@@ -29,103 +30,98 @@
         <div id="wrapper">
 
             <!-- Navigation -->
-            <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="index.html">NIRDPR GMS</a>
-                </div>
+            <nav class="navbar navbar-light bg-light fixed-top navbar-expand-md" role="navigation" style="margin-bottom: 0; padding: 0rem 0.2rem;">
+                <a class="navbar-brand" href="index.html">NIRDPR GMS</a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+
                 <!-- /.navbar-header -->
 
-                <ul class="nav navbar-top-links navbar-right">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-user fa-fw"></i><i class="fa fa-caret-down"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
+                <ul class="nav navbar-top-links ml-auto">
+                    <li class="dropdown nav-item"><a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">
 
-                            <!--<li><a href="#"><i class="fa fa-cog fa-fw"></i>Settings</a>
-                            </li>
-                            <li class="divider"></li>-->
-                            <li><a href="logout.aspx"><i class="fa fa-sign-out-alt "></i>Logout</a>
+                        <i class="fa fa-user fa-fw"></i><i class="fa fa-caret-down"></i>
+
+                    </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li class="dropdown-item"><a href="logout.aspx"><i class="fa fa-sign-out-alt "></i>Logout</a>
                             </li>
                         </ul>
                     </li>
                 </ul>
 
-                <div class="navbar-default sidebar" role="navigation">
-                    <div class="sidebar-nav navbar-collapse">
-                        <ul class="nav" id="side-menu">
-                            <li class="sidebar-search">
-                                <div class="input-group custom-search-form">
-                                    <input type="text" class="form-control" placeholder="Search...">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button">
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                    </span>
-                                </div>
+                <div class="navbar-light  sidebar" role="navigation">
+                    <div class=" sidebar sidebar-nav navbar-collapse">
+                        <ul class="nav in" style="margin-top: 0px;" id="side-menu">
+
+                            <li class="nav-item mt-5"><a href="Dashboard.aspx" class="nav-link">
+
+                                <i class="fa fa-home fa-fw"></i>
+
+                                Home
+
+                            </a>
                             </li>
-                            <li>
-                                <a href="Dashboard.aspx">
-                                    <i class="fa fa-home fa-fw"></i>
-                                    Home
-                                </a>
-                            </li>
-                             <li id="rdts" runat="server" visible="false">
-                                <a href="#" onclick="javascript:void(0);">
-                                    <i class="fa fa-bed fa-fw"></i>
-                                    Room Details
+                            <li id="rdts" runat="server" visible="true" class="nav-item"><a href="#" onclick="javascript:void(0);" class="nav-link">
+
+                                <i class="fa fa-bed fa-fw"></i>
+
+                                Room Details
+
 									<span class="fa fa-angle-left"></span>
-                                </a>
+
+                            </a>
                                 <ul class="nav nav-second-level">
-                                    <li id="rdts_add" runat="server" visible="true">
-                                        <a href="AddRooms.aspx">Add Room</a>
+                                    <li id="rdts_add" runat="server" visible="true" class="nav-item"><a href="AddRooms.aspx" class="nav-link">Add Room</a>
                                     </li>
-                                    <li id="rdts_view" runat="server" visible="true">
-                                        <a href="RoomDetails.aspx">View Room Details</a>
+                                    <li id="rdts_view" runat="server" visible="true" class="nav-item"><a href="RoomDetails.aspx" class="nav-link">View Room Details</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li id="rbkg" runat="server" visible="false">
-                                <a href="#" onclick="javascript:void(0);">
-                                    <i class="fa fa-address-book fa-fw"></i>
-                                    Room Booking
+                            <li id="rbkg" runat="server" visible="true" class="nav-item"><a href="#" onclick="javascript:void(0);" class="nav-link">
+
+                                <i class="fa fa-address-book fa-fw"></i>
+
+                                Room Booking
+
 									<span class="fa fa-angle-left"></span>
-                                </a>
+
+                            </a>
                                 <ul class="nav nav-second-level">
-                                    <li id="rbkg_add" runat="server" visible="true">
-                                        <a href="AddBookings.aspx">Create Room Booking</a>
+                                    <li id="rbkg_add" runat="server" visible="true" class="nav-item"><a href="AddBookings.aspx" class="nav-link">Create Room Booking</a>
                                     </li>
-                                    <li id="rbkg_manage" runat="server" visible="true">
-                                        <a href="Bookings.aspx">View Room Bookings</a>
+                                    <li id="rbkg_manage" runat="server" visible="true" class="nav-item"><a href="Bookings.aspx" class="nav-link">View Room Bookings</a>
                                     </li>
                                 </ul>
                             </li>
-                             <li id="mgmt" runat="server" visible="false">
-                                <a href="#" onclick="javascript:void(0);">
-                                    <i class="fa fa-tasks fa-fw"></i>
-                                    Management
+                            <li id="mgmt" runat="server" visible="true" class="nav-item"><a href="#" onclick="javascript:void(0);" class="nav-link">
+
+                                <i class="fa fa-tasks fa-fw"></i>
+
+                                Management
+
 									<span class="fa fa-angle-left"></span>
-                                </a>
+
+                            </a>
                                 <ul class="nav nav-second-level">
-                                    <li id="mgmt_current" runat="server" visible="true">
-                                        <a href="CurrentManagement.aspx">Current Management</a>
+                                    <li id="mgmt_current" runat="server" visible="true" class="nav-item"><a href="CurrentManagement.aspx" class="nav-link">Current Management</a>
                                     </li>
-                                    <li id="mgmt_pending" runat="server" visible="true">
-                                        <a href="PendingRequest.aspx">Pending Requests</a>
+                                    <li id="mgmt_pending" runat="server" visible="true" class="nav-item"><a href="PendingRequest.aspx" class="nav-link">Pending Requests</a>
                                     </li>
                                 </ul>
                             </li>
-                             <li id="rmpr" runat="server" visible="false">
-                                <a href="RoomPricing.aspx">
-                                    <i class="fa fa-rupee-sign fa-fw"></i>
-                                    Room Pricing
-                                </a>
+                            <li id="rmpr" class="nav-item" runat="server" visible="true"><a href="RoomPricing.aspx" class="nav-link">
+
+                                <i class="fa fa-rupee-sign fa-fw"></i>
+
+                                Room Pricing
+
+                            </a>
                             </li>
                         </ul>
                     </div>
@@ -136,7 +132,7 @@
             <div id="page-wrapper">
                 <asp:ContentPlaceHolder ID="MainBody" runat="server">
                 </asp:ContentPlaceHolder>
-              <%--<footer class="py-4 bg-light mt-auto">
+                <%--<footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
                             <div class="text-muted">Copyright &copy; NIRDPR 2020</div>
@@ -147,14 +143,14 @@
                             </div>
                         </div>
                     </div>
-                </footer>  --%>  
+                </footer>  --%>
             </div>
 
         </div>
-      
-        
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <script src="../../js/Dashboard.js"></script>
+
+
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <script src="../js/Dashboard.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/3.0.6/metisMenu.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
@@ -163,7 +159,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-      
+
         <asp:ContentPlaceHolder ID="Scripts" runat="server"></asp:ContentPlaceHolder>
     </form>
 </body>
