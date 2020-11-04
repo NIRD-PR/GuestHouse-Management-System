@@ -39,9 +39,7 @@
                                             </div>
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <a class="small" href="Password.aspx">Forgot Password?</a>
-                                                <!-- <input type="submit" onclick=""> -->
-                                                <asp:Button type="submit" runat="server" class="btn btn-primary" ID="userLoginButton" Text="Login" OnClick="userLoginButton_Click" />
-                                                <asp:Button type="submit" runat="server" class="btn btn-primary" ID="adminLoginButton" Text="Login" OnClick="adminLoginButton_Click" hidden/>
+                                                <asp:Button type="submit" runat="server" class="btn btn-primary" ID="LoginButton" Text="Login" OnClick="loginButton_Click" />
                                             </div>
                                         </form>
                                     </div>

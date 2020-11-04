@@ -18,7 +18,7 @@ namespace GuestHouse.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 ddlBT.DataSource = getData("spGetBookingType", null);
                 ddlBT.DataBind();
