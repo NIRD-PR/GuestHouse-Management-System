@@ -200,7 +200,7 @@ namespace GuestHouse.Views
         {
             RepeaterItem item = (sender as HtmlButton).Parent as RepeaterItem;
             int RoomID = int.Parse((item.FindControl("lblRoomID") as Label).Text);
-            int RoomFloor = int.Parse((item.FindControl("txtRF") as Label).Text);
+            int RoomFloor = int.Parse((item.FindControl("txtRF") as TextBox).Text);
             string RoomNumber = (item.FindControl("txtRN") as TextBox).Text.Trim();
             // string RoomPrice = (item.FindControl("txtRP") as TextBox).Text.Trim();
             string RoomCapacity = (item.FindControl("txtRC") as TextBox).Text.Trim();

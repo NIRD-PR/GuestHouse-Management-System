@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GuestHouse.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -15,7 +16,8 @@ namespace GuestHouse.Views.User
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            rptTable.DataSource =    Dashboard.GetBookings();
+            rptTable.DataBind();
         }
 
         [WebMethod]
@@ -50,6 +52,42 @@ namespace GuestHouse.Views.User
                     return chartData;
                 }
             }
+        }
+
+        [WebMethod]
+        public static List<GuestHouse.Models.BookingsViewModel> GetBookings()
+        {
+            List<GuestHouse.Models.BookingsViewModel> bookings = new List<GuestHouse.Models.BookingsViewModel>();
+            string constr = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand("SELECT ( B.FirstName +' '+ B.LastName) AS Name,G.Name AS GuestHouse ,R.RoomNumber,T.BookingType, B.NoOfMembers, B.BookingFrom,B.BookingTo,B.TotalAmount FROM dbo.Bookings B inner join Master.BookingType T on B.BookingTypeID=T.BookingTypeId inner join dbo.Rooms R on R.RoomID=B.AssignRoomID inner join Master.GuestHouseIndex G on G.GuestHouseID=R.GuestHouseID where  B.BookingTo>=GETDATE()", con))
+                {
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            bookings.Add(new GuestHouse.Models.BookingsViewModel
+                            {
+                                Name = sdr["Name"].ToString(),
+                                GuestHouse=sdr["GuestHouse"].ToString(),
+                                RoomNumber=sdr["RoomNumber"].ToString(),
+                                BookingType = sdr["BookingType"].ToString(),
+                                NoOfMembers = Convert.ToInt32(sdr["NoOfMembers"]),
+                                BookingFrom = Convert.ToDateTime(sdr["BookingFrom"].ToString()),
+                                BookingTo = Convert.ToDateTime(sdr["BookingTo"].ToString()),                                                       
+                                TotalAmount = Convert.ToDecimal(sdr["TotalAmount"]),
+
+                            });
+
+                        }
+                    }
+                    con.Close();
+                }
+            }
+
+            return bookings;
         }
     }
 }

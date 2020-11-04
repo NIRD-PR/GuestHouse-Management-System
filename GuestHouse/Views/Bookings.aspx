@@ -98,7 +98,7 @@
                         {
                             'data': 'BookingType',
                             'render': function (data, type, row) {
-                                return '<button class="btn btn-primary" data-id="' + row[2] + '" data-title="' + row[2] + '" >' + data + '</button>';
+                                return '<button class="btn btn-link" data-id="' + row[2] + '" data-title="' + row[2] + '" >' + data + '</button>';
                             },
                             
                         },

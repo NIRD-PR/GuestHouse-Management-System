@@ -20,22 +20,30 @@
                 maxDate: "",
                 wrap: true,
                 onChange: function (selectedDates, dateStr, instance) {
+                    var prevDate = new Date(dateStr); 
+                    prevDate.setDate(prevDate.getDate() - 1);
                     tdate2.set('minDate', dateStr),
-                        bdate1.set('minDate', dateStr),
+                        bdate1.set('minDate', prevDate),
+                        //bdate1.setDate(dateStr.fp_incr(-1),true),
                         bdate2.set('minDate', dateStr)
                 }
 
             });
             var tdate2 = $("#<%= training_to.ClientID %>").flatpickr({
                 enableTime: true,
-                minDate: "today",
+              //  minDate: "today",
                 dateFormat: "Y-m-d H:i",
                 altInput: true,
                 altFormat: "F j, Y H:i",
                 onChange: function (selectedDates, dateStr, instance) {
+                    var nextDate = new Date(dateStr);
+                    nextDate.setDate(nextDate.getDate() + 1);
+                    
+                    console.log(nextDate);
                     tdate1.set('maxDate', dateStr),
                         bdate1.set('maxDate', dateStr),
-                        bdate2.set('maxDate', dateStr)
+                        bdate2.set('maxDate', nextDate)
+                       
                 },
 
             });
