@@ -67,7 +67,7 @@
 
                             </a>
                             </li>
-                            <li id="rdts" runat="server" visible="true" class="nav-item"><a href="#" onclick="javascript:void(0);" class="nav-link">
+                            <li id="rdts" runat="server" visible="false" class="nav-item"><a href="#" onclick="javascript:void(0);" class="nav-link">
 
                                 <i class="fa fa-bed fa-fw"></i>
 
@@ -99,7 +99,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li id="mgmt" runat="server" visible="true" class="nav-item"><a href="#" onclick="javascript:void(0);" class="nav-link">
+                            <li id="mgmt" runat="server" visible="false" class="nav-item"><a href="#" onclick="javascript:void(0);" class="nav-link">
 
                                 <i class="fa fa-tasks fa-fw"></i>
 
@@ -115,7 +115,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li id="rmpr" class="nav-item" runat="server" visible="true"><a href="RoomPricing.aspx" class="nav-link">
+                            <li id="rmpr" class="nav-item" runat="server" visible="false"><a href="RoomPricing.aspx" class="nav-link">
 
                                 <i class="fa fa-rupee-sign fa-fw"></i>
 

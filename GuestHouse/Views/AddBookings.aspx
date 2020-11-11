@@ -307,19 +307,19 @@
             </div>
             <asp:UpdatePanel ID="UpdatePanelRoom" runat="server">
                 <ContentTemplate>
-                    <div class="form-row ml-2 mb-1 mt-6">
-                        <div class="col-md-2">
+                    <div class="form-row ml-2 mb-1 mt-6 ">
+                        <div class="col-md-3">
                             <label class="required" for="ddlGH">Guest House </label>
                             <asp:DropDownList ID="ddlGH" runat="server" AutoPostBack="True" DataTextField="Name" DataValueField="GuestHouseID" Width="150px" CssClass="form-control ddl" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlGH_SelectedIndexChanged"></asp:DropDownList>
                             <asp:RequiredFieldValidator ID="valGH" runat="server" InitialValue="0" ErrorMessage="Invalid Selection" ForeColor="Red" ControlToValidate="ddlGH"></asp:RequiredFieldValidator>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <label class="required" for="ddlRT">Room Type </label>
                             <asp:DropDownList ID="ddlRT" runat="server" AutoPostBack="True" DataTextField="RoomType" DataValueField="RoomTypeID" Width="150px" CssClass="form-control ddl" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlRT_SelectedIndexChanged"></asp:DropDownList>
                             <asp:RequiredFieldValidator ID="valRT" runat="server" InitialValue="0" ErrorMessage="Invalid Selection" ForeColor="Red" ControlToValidate="ddlRT"></asp:RequiredFieldValidator>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label class="required" for="ddlAR">Available Rooms </label>
                             <asp:DropDownList ID="ddlAR" runat="server" AutoPostBack="True" DataTextField="RoomNumber" DataValueField="RoomID" Width="150px" CssClass="form-control ddl" AppendDataBoundItems="true"></asp:DropDownList>
                             <asp:RequiredFieldValidator ID="valAR" runat="server" InitialValue="0" ErrorMessage="Invalid Selection" ForeColor="Red" ControlToValidate="ddlAR"></asp:RequiredFieldValidator>

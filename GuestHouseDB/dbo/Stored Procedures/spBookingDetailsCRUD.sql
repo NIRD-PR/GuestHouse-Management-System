@@ -90,8 +90,12 @@ BEGIN
 	IF @Action ='EXTEND'
 	BEGIN
 	UPDATE dbo.Bookings
-		SET BookingTo=DATEADD(DAY, @Extend, BookingTo)
-		WHERE BookingID=@BookingID
+		SET BookingTo=DATEADD(DAY, @Extend, BookingTo),
+		    TotalAmount=TotalAmount + @Extend*T.Rate
+		FROM
+		dbo.Bookings B inner join dbo.Rooms R on R.RoomID=@AssignRoomID inner join Master.RoomType T on R.RoomTypeID=T.RoomTypeID
+		
+		WHERE B.BookingID=@BookingID
 	END
 END
 

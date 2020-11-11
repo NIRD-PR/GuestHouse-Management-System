@@ -7,9 +7,19 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#dtbl').dataTable();
+            $("#txtExt").val('');
         });
         function openModal() {
             $('#ExtendModal').modal('show');
+        }
+        function GetConfirmation() {
+            var reply = confirm("Are you sure you want to check-out this booking?");
+            if (reply) {
+                return true;
+            }
+            else {
+                return false;
+            }
         }
     </script>
 
@@ -92,7 +102,7 @@
                         <div class="card-body">
                             <div class="media d-flex">
                                 <div class="media-body text-left">
-                                    <h3 style="color: mediumslateblue">56</h3>
+                                    <h3 style="color: mediumslateblue" id="InHouse" runat="server"></h3>
                                     <span>Current In House</span>
                                 </div>
                                 <div class="align-self-center">
@@ -109,7 +119,7 @@
                         <div class="card-body">
                             <div class="media d-flex">
                                 <div class="media-body text-left">
-                                    <h3 style="color: dodgerblue">20</h3>
+                                    <h3 style="color: dodgerblue" id="RoomsAvailable" runat="server"></h3>
                                     <span>Rooms Available</span>
                                 </div>
                                 <div class="align-self-center">
@@ -126,7 +136,7 @@
                         <div class="card-body">
                             <div class="media d-flex">
                                 <div class="media-body text-left">
-                                    <h3 style="color: lightcoral">2</h3>
+                                    <h3 style="color: lightcoral" id="RoomsBlocked" runat="server"></h3>
                                     <span>Rooms Blocked</span>
                                 </div>
                                 <div class="align-self-center">
@@ -143,11 +153,11 @@
                         <div class="card-body">
                             <div class="media d-flex">
                                 <div class="media-body text-left">
-                                    <h3 style="color: lightgreen">11</h3>
-                                    <span>Check Ins Today</span>
+                                    <h3 style="color: lightgreen" id="Revenue" runat="server"></h3>
+                                    <span>Revenue(Last 30 days)</span>
                                 </div>
                                 <div class="align-self-center">
-                                    <i class="fas fa-address-card fa-3x float-right" style="color: lightgreen"></i>
+                                    <i class="fas fa-rupee-sign fa-3x float-right" style="color: lightgreen"></i>
                                 </div>
                             </div>
                         </div>
@@ -226,7 +236,7 @@
                                     <p style="display: none">
                                         <%# Eval("BookingID")%>
                                     </p>
-                                    <asp:LinkButton runat="server" CssClass="btn btn-primary" ID="chkOut" Text='Check-Out' CommandArgument='<%# Eval("RoomID") +","+ Eval("BookingID") %>' OnClick="CheckOut_Click" />
+                                    <asp:LinkButton runat="server" CssClass="btn btn-primary" ID="chkOut" Text='Check-Out' CommandArgument='<%# Eval("RoomID") +","+ Eval("BookingID") %>' OnClick="CheckOut_Click" OnClientClick="return GetConfirmation();" />
                                     <asp:LinkButton runat="server" CssClass="btn btn-outline-primary" ID="ShowExt" Text='Extend Booking' CommandArgument='<%# Eval("RoomID") +","+ Eval("BookingID") %>' OnClick="ShowExt_Click" />
                                 </td>
                             </tr>

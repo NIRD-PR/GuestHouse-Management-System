@@ -18,6 +18,11 @@ namespace GuestHouse.Views
         {
             rptTable.DataSource = Dashboard.GetBookings();
             rptTable.DataBind();
+            var dataset = getData("spGetReports", null);
+            RoomsAvailable.InnerText = (dataset.Tables[0].Rows[0].ItemArray[0].ToString());//Available Room count
+            RoomsBlocked.InnerText = (dataset.Tables[1].Rows[0].ItemArray[0].ToString());//Blocked Room count
+            InHouse.InnerText = (dataset.Tables[2].Rows[0].ItemArray[0].ToString());//In-House count
+            Revenue.InnerText = (dataset.Tables[3].Rows[0].ItemArray[0].ToString());//Revenue(Last 30 days)
         }
 
         [WebMethod]
@@ -61,7 +66,7 @@ namespace GuestHouse.Views
             string constr = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT ( B.FirstName +' '+ B.LastName) AS Name,G.Name AS GuestHouse ,R.RoomNumber,B.BookingID,R.RoomID,T.BookingType, B.NoOfMembers, B.BookingFrom,B.BookingTo,B.TotalAmount FROM dbo.Bookings B inner join Master.BookingType T on B.BookingTypeID=T.BookingTypeId inner join dbo.Rooms R on R.RoomID=B.AssignRoomID inner join Master.GuestHouseIndex G on G.GuestHouseID=R.GuestHouseID where  B.BookingTo>=GETDATE() and B.isActive=1", con))
+                using (SqlCommand cmd = new SqlCommand("SELECT ( B.FirstName +' '+ B.LastName) AS Name,G.Name AS GuestHouse ,R.RoomNumber,B.BookingID,R.RoomID,T.BookingType, B.NoOfMembers, B.BookingFrom,B.BookingTo,B.TotalAmount FROM dbo.Bookings B inner join Master.BookingType T on B.BookingTypeID=T.BookingTypeId inner join dbo.Rooms R on R.RoomID=B.AssignRoomID inner join Master.GuestHouseIndex G on G.GuestHouseID=R.GuestHouseID where  B.BookingTo>=GETDATE() and B.BookingFrom<=GETDATE() and B.isActive=1", con))
                 {
                     con.Open();
                     using (SqlDataReader sdr = cmd.ExecuteReader())
@@ -133,7 +138,7 @@ namespace GuestHouse.Views
         {
             
             int extend = Convert.ToInt32(txtExt.Text.ToString());
-           // int RoomID = Convert.ToInt32(hiddenRoom.Text.ToString());
+            int RoomID = Convert.ToInt32(hiddenRoom.Text.ToString());
             int BookingID = Convert.ToInt32(hiddenBooking.Text.ToString());
             string constr = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
@@ -142,7 +147,7 @@ namespace GuestHouse.Views
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Action", "EXTEND");
-                   // cmd.Parameters.AddWithValue("@RoomID", RoomID);
+                    cmd.Parameters.AddWithValue("@AssignRoomID", RoomID);
                     cmd.Parameters.AddWithValue("@BookingID", BookingID);
                     cmd.Parameters.AddWithValue("@Extend", extend);
                     cmd.Connection = con;
@@ -153,6 +158,26 @@ namespace GuestHouse.Views
             }
             rptTable.DataSource = Dashboard.GetBookings();
             rptTable.DataBind();
+            Response.Redirect("Dashboard.aspx", true);
         }
+
+        private DataSet getData(string Proc, SqlParameter Parameter)
+        {
+            string CS = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(CS))
+            {
+                con.Open();
+                SqlDataAdapter DA = new SqlDataAdapter(Proc, con);
+                DA.SelectCommand.CommandType = CommandType.StoredProcedure;
+                if (Parameter != null)
+                {
+                    DA.SelectCommand.Parameters.Add(Parameter);
+                }
+                DataSet DS = new DataSet();
+                DA.Fill(DS);
+                return DS;
+            }
+        }
+
     }
 }
