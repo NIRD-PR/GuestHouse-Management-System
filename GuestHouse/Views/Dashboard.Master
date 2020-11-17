@@ -123,6 +123,21 @@
 
                             </a>
                             </li>
+                            <li id="report" runat="server" visible="false" class="nav-item"><a href="#" onclick="javascript:void(0);" class="nav-link">
+
+                                <i class="fas fa-file-alt"></i>
+
+                                Reports
+
+									<span class="fa fa-angle-left"></span>
+
+                            </a>
+                                <ul class="nav nav-second-level">
+                                    <li id="reportGen" runat="server" visible="true" class="nav-item"><a href="GeneralReport.aspx" class="nav-link">General Report</a>
+                                    </li>
+                                   
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                     <!-- /.sidebar-collapse -->

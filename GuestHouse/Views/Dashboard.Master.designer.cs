@@ -123,6 +123,24 @@ namespace GuestHouse.Views
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl rmpr;
 
         /// <summary>
+        /// report control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl report;
+
+        /// <summary>
+        /// reportGen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl reportGen;
+
+        /// <summary>
         /// MainBody control.
         /// </summary>
         /// <remarks>

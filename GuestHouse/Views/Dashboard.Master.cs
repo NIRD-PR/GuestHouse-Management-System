@@ -25,6 +25,7 @@ namespace GuestHouse.Views
                     rbkg.Visible = true;
                     mgmt.Visible = true;
                     rmpr.Visible = true;
+                    report.Visible = true;
                 }
                 else if (user.HasPrimaryRole("user"))
                 {
