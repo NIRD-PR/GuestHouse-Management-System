@@ -16,7 +16,10 @@ namespace GuestHouse.Views
         protected void Page_Load(object sender, EventArgs e)
         {
             LoginUser user = Session["user"] as LoginUser;
-
+            if(starting_date.Text=="")
+            starting_date.Text= Convert.ToDateTime("10/02/2020").ToString("yyyy-dd-MM");
+            if(ending_date.Text=="")
+            ending_date.Text = DateTime.Today.ToString("yyyy-MM-dd");
             if (!user.HasPrimaryRole("admin"))
             {
                 Response.Redirect("logout.aspx");
@@ -31,16 +34,17 @@ namespace GuestHouse.Views
         {
             ReportViewer1.ProcessingMode = ProcessingMode.Local;
             ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reports/GeneralReport.rdlc");
-            Reports.GeneralReport dsBookings = GetData(ddlDays.SelectedItem.Value);
+          
+            Reports.GeneralReport dsBookings = GetData(Convert.ToDateTime(starting_date.Text, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat), Convert.ToDateTime(ending_date.Text, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat));
             ReportDataSource datasource = new ReportDataSource("GeneralReport", dsBookings.Tables[0]);
             ReportViewer1.LocalReport.DataSources.Clear();
             ReportViewer1.LocalReport.DataSources.Add(datasource);
         }
 
-        private Reports.GeneralReport GetData(string date)
+        private Reports.GeneralReport GetData(DateTime start,DateTime end)
         {
             string conString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
-            using (SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Bookings WHERE BookingFrom >= GETDATE()-@Date"))
+            using (SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Bookings WHERE BookingFrom>=@Start AND BookingFrom<=@End+1"))
             {
                 using (SqlConnection con = new SqlConnection(conString))
                 {
@@ -48,7 +52,8 @@ namespace GuestHouse.Views
                     {
                         cmd.Connection = con;
                         sda.SelectCommand = cmd;
-                        cmd.Parameters.AddWithValue("@Date", Convert.ToInt32(date));
+                        cmd.Parameters.AddWithValue("@Start",start);
+                        cmd.Parameters.AddWithValue("@End", end);
                         using (Reports.GeneralReport dsBookings = new Reports.GeneralReport())
                         {
                             try
@@ -66,7 +71,7 @@ namespace GuestHouse.Views
             }
         }
 
-        protected void DaysChanged(object sender, EventArgs e)
+        protected void TextChanged(object sender, EventArgs e)
         {
             this.BindReport();
         }

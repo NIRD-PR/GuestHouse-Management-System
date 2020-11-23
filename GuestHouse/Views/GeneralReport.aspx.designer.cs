@@ -24,13 +24,40 @@ namespace GuestHouse.Views
         protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
-        /// ddlDays control.
+        /// lblSt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDays;
+        protected global::System.Web.UI.WebControls.Label lblSt;
+
+        /// <summary>
+        /// starting_date control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox starting_date;
+
+        /// <summary>
+        /// LabelEn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelEn;
+
+        /// <summary>
+        /// ending_date control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ending_date;
 
         /// <summary>
         /// ReportViewer1 control.
