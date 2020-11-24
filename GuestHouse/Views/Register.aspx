@@ -14,6 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>-->
+    <script src="../js/sha1.js" type="text/javascript"></script>
     <script type="text/javascript"> 
         /*
         $(document).ready(function () {
