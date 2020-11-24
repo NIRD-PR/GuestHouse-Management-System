@@ -42,6 +42,15 @@ namespace GuestHouse
         protected global::System.Web.UI.HtmlControls.HtmlInputPassword inputPassword;
 
         /// <summary>
+        /// txtPwdHash control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField txtPwdHash;
+
+        /// <summary>
         /// LoginButton control.
         /// </summary>
         /// <remarks>

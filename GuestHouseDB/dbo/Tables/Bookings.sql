@@ -17,9 +17,12 @@
     [PurposeOfVisit]   NVARCHAR (100)  NULL,
     [VisitingWhom]     NVARCHAR (50)   NULL,
     [CenterVisiting]   NVARCHAR (50)   NULL,
+    [isActive]         BIT             DEFAULT ((1)) NOT NULL,
     PRIMARY KEY CLUSTERED ([BookingID] ASC),
     CONSTRAINT [FK_Bookings_BookingType] FOREIGN KEY ([BookingTypeID]) REFERENCES [Master].[BookingType] ([BookingTypeId])
 );
+
+
 
 
 

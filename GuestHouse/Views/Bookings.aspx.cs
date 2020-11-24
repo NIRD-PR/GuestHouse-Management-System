@@ -52,7 +52,7 @@ namespace GuestHouse.Views
             string constr = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT B.FirstName, B.LastName,T.BookingType, B.NoOfMembers, B.BookingFrom,B.BookingTo,B.PhoneNo,B.Address,B.TotalAmount,B.TrainingName,B.TrainingDirector,B.TrainingFrom,B.TrainingTo,B.PurposeOfVisit,B.VisitingWhom,B.CenterVisiting FROM dbo.Bookings B inner join Master.BookingType T on B.BookingTypeID=T.BookingTypeId", con))
+                using (SqlCommand cmd = new SqlCommand("SELECT B.FirstName, B.LastName,T.BookingType, B.NoOfMembers, B.BookingFrom,B.BookingTo,B.PhoneNo,B.Address,B.TotalAmount,B.TrainingName,B.TrainingDirector,B.TrainingFrom,B.TrainingTo,B.PurposeOfVisit,B.VisitingWhom,B.CenterVisiting FROM dbo.Bookings B inner join Master.BookingType T on B.BookingTypeID=T.BookingTypeId where B.isActive=1", con))
                 {
                     con.Open();
                     using (SqlDataReader sdr = cmd.ExecuteReader())

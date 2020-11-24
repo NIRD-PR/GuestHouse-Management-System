@@ -1,23 +1,25 @@
 ﻿CREATE PROCEDURE [dbo].[spBookingDetailsCRUD]
 	(
 	@Action nvarchar(10),
-	@AssignRoomID int,
-	@FirstName nvarchar(50),
-	@LastName nvarchar(50),
-	@PhoneNo nvarchar(10) ,
-	@Members int,
-	@BookingFrom datetime,
-	@BookingTo datetime,
-	@Address nvarchar(200),
+	@AssignRoomID int=null,
+	@FirstName nvarchar(50)=null,
+	@LastName nvarchar(50)=null,
+	@PhoneNo nvarchar(10) =null,
+	@Members int=null,
+	@BookingFrom datetime=null,
+	@BookingTo datetime=null,
+	@Address nvarchar(200)=null,
 	@Amount int=null,
-	@BookingTypeID int,
+	@BookingTypeID int=null,
 	@trName nvarchar(50)=null,
 	@trDirector nvarchar(50)=null,
 	@trFrom datetime=null,
 	@trTo datetime=null,
 	@purpVis nvarchar(100)=null,
 	@visWh nvarchar(50)=null,
-	@cenVis nvarchar(50)=null
+	@cenVis nvarchar(50)=null,
+	@BookingID int =null,
+	@Extend int=null
 )
 AS
 BEGIN
@@ -73,6 +75,27 @@ BEGIN
 		dbo.Bookings B inner join dbo.Rooms R on R.RoomID=@AssignRoomID inner join Master.RoomType T on R.RoomTypeID=T.RoomTypeID
 		WHERE B.AssignRoomID=@AssignRoomID
 
+	END
+
+	IF @Action ='CHECKOUT'
+	BEGIN
+	UPDATE dbo.Bookings
+		SET isActive=0
+		WHERE BookingID=@BookingID
+	UPDATE dbo.Rooms
+		SET BookingStatusID=1
+		WHERE RoomID=@AssignRoomID
+	END
+
+	IF @Action ='EXTEND'
+	BEGIN
+	UPDATE dbo.Bookings
+		SET BookingTo=DATEADD(DAY, @Extend, BookingTo),
+		    TotalAmount=TotalAmount + @Extend*T.Rate
+		FROM
+		dbo.Bookings B inner join dbo.Rooms R on R.RoomID=@AssignRoomID inner join Master.RoomType T on R.RoomTypeID=T.RoomTypeID
+		
+		WHERE B.BookingID=@BookingID
 	END
 END
 

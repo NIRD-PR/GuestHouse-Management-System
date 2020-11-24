@@ -4,9 +4,13 @@
     <%-- Here We need to write some js code for load google chart with database data --%>
 
     <script src="https://www.gstatic.com/charts/loader.js"></script>
-   
-   
-  <%--   <script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#dtbl').dataTable();
+        });
+    </script>
+
+    <%--   <script>
         var chartData; // globar variable for hold chart data
 
         google.charts.load('current', { packages: ['corechart'] });
@@ -47,7 +51,6 @@
 
         }
     </script>--%>
-
 </asp:Content>
 
 
@@ -57,14 +60,14 @@
     <!-- This the main content of the page -->
     <main>
         <div class="row">
-		<div class="col-lg-12">
-			<h1 class="page-header">Home</h1>
-		</div>
-	</div>   
+            <div class="col-lg-12">
+                <h1 class="page-header">Home</h1>
+            </div>
+        </div>
 
-                <!-- This is the graph row -->
-        <div class="row" style="margin-left:20px">
-               <!--  <div class="col-lg-3 col-md-6">
+        <!-- This is the graph row -->
+        <div class="row" style="margin-left: 20px">
+            <!--  <div class="col-lg-3 col-md-6">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <div>Rooms Overview</div>
@@ -80,108 +83,142 @@
                             </div>
                             </div>
                      </div> -->
-                    <div class="col-lg-3 col-md-6 ">
-                        <div class="panel panel-red">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-users fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <div class="huge">80</div>
-                                        <div>Guests Today</div>
-                                    </div>
-                                </div>
+            <div class="col-lg-3 col-md-6 ">
+                <div class="panel panel-red">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-users fa-5x"></i>
                             </div>
-                            <a href="#">
-                                <div class="panel-footer">
-                                    <span class="pull-left">View Details</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">80</div>
+                                <div>Guests Today</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-green">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-check fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <div class="huge">18</div>
-                                        <div>Upcoming Reservations</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#">
-                                <div class="panel-footer">
-                                    <span class="pull-left">View Details</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
+                    <a href="#">
+                        <div class="panel-footer">
+                            <span class="pull-left">View Details</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-yellow">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-bed fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <div class="huge">34</div>
-                                        <div>New Bookings (This Month)</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#">
-                                <div class="panel-footer">
-                                    <span class="pull-left">View Details</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    
+                    </a>
                 </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-green">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-check fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">18</div>
+                                <div>Upcoming Reservations</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#">
+                        <div class="panel-footer">
+                            <span class="pull-left">View Details</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-yellow">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-bed fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">34</div>
+                                <div>New Bookings (This Month)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#">
+                        <div class="panel-footer">
+                            <span class="pull-left">View Details</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
 
-                <!-- This is the DataTable -->
-                <div class="card mb-4 mt-3">
-                    <div class="card-header">
-                        <i class="fas fa-table mr-1"></i>
-                        DataTable Example
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Age</th>
-                                        <th>Start date</th>
-                                        <th>Salary</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Tiger Nixon</td>
-                                        <td>System Architect</td>
-                                        <td>Edinburgh</td>
-                                        <td>61</td>
-                                        <td>2011/04/25</td>
-                                        <td>$320,800</td>
-                                    </tr>
+        </div>
+
+        <!-- This is the DataTable -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Active Bookings</h1>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <asp:Repeater ID="rptTable" runat="server">
+                            <HeaderTemplate>
+                                <table class="table table-striped" id="dtbl">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Guest House</th>
+                                            <th>Room Number</th>
+                                            <th>Booking From</th>
+                                            <th>Booking To</th>
+                                            <th>Occupants</th>
+                                            <th>Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                            </HeaderTemplate>
+                            <ItemTemplate>
+                                <tr>
+                                    <td><%# Eval("Name") %></td>
+                                    <td>
+                                        <p><%# Eval("GuestHouse") %></p>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            <%# Eval("RoomNumber") %>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            <%# Eval("BookingFrom")%>
+                                        </p>
+                                    </td>
+                                    <td>
+                                       <p>
+                                            <%# Eval("BookingTo")%>
+                                        </p>
+                                    </td>
+                                    <td>
+                                       <p>
+                                            <%# Eval("NoOfMembers")%>
+                                        </p>
+                                    </td>
+                                    <td>
+                                       <p>
+                                            <%# Eval("TotalAmount")%>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </ItemTemplate>
+                            <FooterTemplate>
                                 </tbody>
-                            </table>
-                        </div>
+			            </table>
+                            </FooterTemplate>
+
+                        </asp:Repeater>
                     </div>
                 </div>
-           
-        </main>
+            </div>
+        </div>
+    </main>
 </asp:Content>

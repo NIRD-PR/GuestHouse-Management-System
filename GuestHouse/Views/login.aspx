@@ -11,7 +11,29 @@
         <meta name="author" content="" />
         <title>GMS| Login</title>
         <link href="../css/styles.css" rel="stylesheet" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>    </head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>    
+        <script src="../js/sha1.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            
+            function validateLogin() {
+                var userName = document.getElementById('inputEmailAddress').value;
+                console.log(userName);
+                var pswd = document.getElementById('inputPassword').value;
+                console.log(pswd);
+                if (userName == '' || pswd == '') {
+                    return;               
+                }
+
+                var keyGenrate = '<%=ViewState["KeyGenerator"]%>';
+                var myval = SHA1(keyGenrate);
+                document.getElementById('<%=txtPwdHash.ClientID%>').value = '';
+                var myval1 = SHA1(document.getElementById('inputPassword').value.toString());
+                //document.getElementById('inputPassword').value = '******';
+                document.getElementById('<%=txtPwdHash.ClientID%>').value = SHA1(myval1 + myval);
+            }   
+     
+        </script>
+    </head>
     <body class="bg-primary">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
@@ -30,6 +52,7 @@
                                             <div class="form-group">
                                                 <label class="small mb-1 required" for="inputPassword">Password</label>
                                                 <input class="form-control py-4" runat="server" id="inputPassword" type="password" placeholder="Enter password" required/>
+                                                <asp:HiddenField ID="txtPwdHash"  runat="server" />
                                             </div>
                                             <div class="form-group">
                                                 <div class="custom-control custom-checkbox">
@@ -39,7 +62,7 @@
                                             </div>
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <a class="small" href="Password.aspx">Forgot Password?</a>
-                                                <asp:Button type="submit" runat="server" class="btn btn-primary" ID="LoginButton" Text="Login" OnClick="loginButton_Click" />
+                                                <asp:Button type="submit" runat="server" class="btn btn-primary" ID="LoginButton" Text="Login" OnClientClick="return validateLogin();"  OnClick="loginButton_Click" />
                                             </div>
                                         </form>
                                     </div>

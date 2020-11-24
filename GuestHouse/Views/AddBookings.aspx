@@ -20,22 +20,30 @@
                 maxDate: "",
                 wrap: true,
                 onChange: function (selectedDates, dateStr, instance) {
+                    var prevDate = new Date(dateStr); 
+                    prevDate.setDate(prevDate.getDate() - 1);
                     tdate2.set('minDate', dateStr),
-                        bdate1.set('minDate', dateStr),
+                        bdate1.set('minDate', prevDate),
+                        //bdate1.setDate(dateStr.fp_incr(-1),true),
                         bdate2.set('minDate', dateStr)
                 }
 
             });
             var tdate2 = $("#<%= training_to.ClientID %>").flatpickr({
                 enableTime: true,
-                minDate: "today",
+              //  minDate: "today",
                 dateFormat: "Y-m-d H:i",
                 altInput: true,
                 altFormat: "F j, Y H:i",
                 onChange: function (selectedDates, dateStr, instance) {
+                    var nextDate = new Date(dateStr);
+                    nextDate.setDate(nextDate.getDate() + 1);
+                    
+                    console.log(nextDate);
                     tdate1.set('maxDate', dateStr),
                         bdate1.set('maxDate', dateStr),
-                        bdate2.set('maxDate', dateStr)
+                        bdate2.set('maxDate', nextDate)
+                       
                 },
 
             });
@@ -299,19 +307,19 @@
             </div>
             <asp:UpdatePanel ID="UpdatePanelRoom" runat="server">
                 <ContentTemplate>
-                    <div class="form-row ml-2 mb-1 mt-6">
-                        <div class="col-md-2">
+                    <div class="form-row ml-2 mb-1 mt-6 ">
+                        <div class="col-md-3">
                             <label class="required" for="ddlGH">Guest House </label>
                             <asp:DropDownList ID="ddlGH" runat="server" AutoPostBack="True" DataTextField="Name" DataValueField="GuestHouseID" Width="150px" CssClass="form-control ddl" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlGH_SelectedIndexChanged"></asp:DropDownList>
                             <asp:RequiredFieldValidator ID="valGH" runat="server" InitialValue="0" ErrorMessage="Invalid Selection" ForeColor="Red" ControlToValidate="ddlGH"></asp:RequiredFieldValidator>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <label class="required" for="ddlRT">Room Type </label>
                             <asp:DropDownList ID="ddlRT" runat="server" AutoPostBack="True" DataTextField="RoomType" DataValueField="RoomTypeID" Width="150px" CssClass="form-control ddl" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlRT_SelectedIndexChanged"></asp:DropDownList>
                             <asp:RequiredFieldValidator ID="valRT" runat="server" InitialValue="0" ErrorMessage="Invalid Selection" ForeColor="Red" ControlToValidate="ddlRT"></asp:RequiredFieldValidator>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label class="required" for="ddlAR">Available Rooms </label>
                             <asp:DropDownList ID="ddlAR" runat="server" AutoPostBack="True" DataTextField="RoomNumber" DataValueField="RoomID" Width="150px" CssClass="form-control ddl" AppendDataBoundItems="true"></asp:DropDownList>
                             <asp:RequiredFieldValidator ID="valAR" runat="server" InitialValue="0" ErrorMessage="Invalid Selection" ForeColor="Red" ControlToValidate="ddlAR"></asp:RequiredFieldValidator>
