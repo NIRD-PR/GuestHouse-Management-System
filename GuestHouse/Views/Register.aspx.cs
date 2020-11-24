@@ -11,6 +11,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Web.Script.Serialization;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Security;
 
 namespace GuestHouse.Views
 {
@@ -41,7 +42,8 @@ namespace GuestHouse.Views
                         sc.Parameters.AddWithValue("@Email", user.Email.Trim());
                         sc.Parameters.AddWithValue("@MobileNo", user.MobileNo.Trim());
                         sc.Parameters.AddWithValue("@ID", user.ID.Trim());
-                        sc.Parameters.AddWithValue("@Password", user.Password.Trim());
+                        var password = FormsAuthentication.HashPasswordForStoringInConfigFile(user.Password.Trim(), "SHA1");
+                        sc.Parameters.AddWithValue("@Password", password);
                         con.Open();
                         sc.ExecuteNonQuery(); System.Diagnostics.Debug.WriteLine("Hello2!");
                         con.Close();

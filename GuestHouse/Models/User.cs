@@ -14,7 +14,6 @@ namespace GuestHouse.Models
         
         [DataType(DataType.Text)]
         [Display(Name = "Last Name")]
-        [Required(ErrorMessage = "This is a required field.")]
         public string LastName { get; set; }
 
         [DataType(DataType.PhoneNumber)]

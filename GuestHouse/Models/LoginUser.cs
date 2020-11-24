@@ -7,8 +7,7 @@ namespace GuestHouse.Models
 {
     public class LoginUser
     {	
-		public string FirstName { get; set; }
-		public string LastName { get; set; }
+		public string Name { get; set; }
 		public string Email { get; set; }
 		public string MobileNo { get; set; }
 		public string ID { get; set; }
