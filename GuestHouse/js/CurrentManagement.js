@@ -27,16 +27,16 @@
         temp += '<td name="selectPrimaryRole" class="required" hidden>';
         temp += '<select class="btn btn-light btn-sm roles">';
         temp += '<option value=""><--Select--></option>';
-        temp += '<option value="">Admin</option>';
-        temp += '<option value="">Reception</option>';
+        temp += '<option value="admin">Admin</option>';
+        temp += '<option value="reception">Reception</option>';
         temp += '</select>';
         temp += '</td>';
         var temp2 = '';
         temp2 += '<td name="selectSecondaryRole" hidden>';
         temp2 += '<select class="btn btn-light btn-sm roles">';
         temp2 += '<option value=""><--Select--></option>';
-        temp2 += '<option value="">Admin</option>';
-        temp2 += '<option value="">Reception</option>';
+        temp2 += '<option value="admin">Admin</option>';
+        temp2 += '<option value="reception">Reception</option>';
         temp2 += '</select>';
         temp2 += '</td>';
         temp2 += '<td name="defaultAction">';
@@ -47,8 +47,11 @@
         temp2 += '<td name="editAction" hidden>';
         temp2 += '<i class="fa fa-check alert-success" onclick="acceptfxn(this)"></i>';
         temp2 += '&nbsp &nbsp';
-        temp2 += '<i class="fa fa-close alert-danger" onclick = "canclefxn(this)"></i>';
+        temp2 += '<i class="fa fa-times alert-danger" style="font-size:18px" onclick = "canclefxn(this)"></i>';
         temp2 += '</td>';
+
+        var primaryRole;
+        var secondaryRole;
 
         $.each(data.Table, function (key, value) {
             requests += '<tr>';
@@ -62,10 +65,12 @@
             requests += '<td>' + value.MobileNo + '</td>';
             requests += '<td>' + value.ID + '</td>';
             requests += '<td name="email">' + value.Email + '</td>';
-            requests += '<td name="displayPrimaryRole"><span class="displayPrimaryRole">' + value.PrimaryRole + '</span></td>';
+            primaryRole = value.PrimaryRole.charAt(0).toUpperCase() + value.PrimaryRole.slice(1);
+            requests += '<td name="displayPrimaryRole"><span class="displayPrimaryRole">' + primaryRole + '</span></td>';
             requests += temp;
             if (value.SecondaryRole) {
-                requests += '<td name="displaySecondaryRole"><span class="displaySecondaryRole">' + value.SecondaryRole + '</span></td>';
+                secondaryRole = value.SecondaryRole.charAt(0).toUpperCase() + value.SecondaryRole.slice(1);
+                requests += '<td name="displaySecondaryRole"><span class="displaySecondaryRole">' + secondaryRole + '</span></td>';
             }
             else {
                 requests += '<td name="displaySecondaryRole">-</td>';
@@ -156,7 +161,7 @@ function deleteRowfxn(cntx) {
     var email = $(cntx).closest("tr").find('td[name = "email"]').text();
     //console.log(email);
     if (email) {
-        alert("Are you sure you want to delete?");
+        confirm("Are you sure you want to delete?");
         deleteRequest(email, cntx);
     }
 }
@@ -186,10 +191,10 @@ function updateRequest(email, primaryRole, secondaryRole, cntx) {
             toggleAction(cntx);
             var displayPrimary = $(cntx).closest("tr").find("td[name = 'displayPrimaryRole']").find("span.displayPrimaryRole");
             //console.log(displayPrimary);
-            displayPrimary.html(primaryRole);
+            displayPrimary.html(primaryRole.charAt(0).toUpperCase() + primaryRole.slice(1));
             var displaySecondary = $(cntx).closest("tr").find("td[name = 'displaySecondaryRole']").find("span.displaySecondaryRole");
             //console.log(displayPrimary);
-            displaySecondary.html(secondaryRole);
+            displaySecondary.html(secondaryRole.charAt(0).toUpperCase() + secondaryRole.slice(1));
 
         },
         failure: function () {
@@ -202,7 +207,7 @@ function updateRequest(email, primaryRole, secondaryRole, cntx) {
 var flag = false;
 
 function acceptfxn(cntx) {
-    console.log("acceptfxn");
+    //console.log("acceptfxn");
     var select = $(cntx).closest("tr").find("td[name = 'selectPrimaryRole']").find("select");
     //console.log(select);
     var primaryRole = select.val();
@@ -219,7 +224,7 @@ function acceptfxn(cntx) {
     var email = $(cntx).closest("tr").find('td[name = "email"]').text();
     //console.log(email);
     if (email) {
-        alert("Are you sure you want to EDIT roles?");
+        confirm("Are you sure you want to EDIT roles?");
         updateRequest(email, primaryRole, secondaryRole, cntx);
         // toggleAction(cntx);
     }
@@ -243,14 +248,19 @@ function toggleAction(cntx) {
     
 }
 
+function canclefxn(cntx) {
+    flag = false;
+    toggleAction(cntx);
+}
+
 function editRowfxn(cntx) {
 
     if (flag) {
         alert("Please complete the current update first.");
-        return
+        return;
     }
     flag = true;
-    console.log("editRowfxn");
+    //console.log("editRowfxn");
 
     toggleAction(cntx);
 
@@ -258,17 +268,17 @@ function editRowfxn(cntx) {
     var displayPrimary = $(cntx).closest("tr").find("td[name = 'displayPrimaryRole']");
 
     var primary = selectPrimary.find("select");
-    var val = displayPrimary.text();
-    console.log(val);
+    var val = displayPrimary.text().toLowerCase();
+    //console.log(val);
     primary.find("option[value ='" + val + "']").attr("selected", "true");
-    console.log(primary.find("option[value ='" + val + "']").text());
+    //console.log(primary.find("option[value ='" + val + "']").text());
 
     var selectSecondary = $(cntx).closest("tr").find("td[name = 'selectSecondaryRole']");
     var displaySecondary = $(cntx).closest("tr").find("td[name = 'displaySecondaryRole']");
 
 
     var secondary = selectSecondary.find("select");
-    var val = displaySecondary.text();
+    var val = displaySecondary.text().toLowerCase();
     if (val != "-") {
         secondary.find("option[value ='" + val + "']").attr("selected", "true");
     }

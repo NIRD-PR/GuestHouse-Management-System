@@ -61,7 +61,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="Password.aspx">Forgot Password?</a>
+                                                <!--<a class="small" href="Password.aspx">Forgot Password?</a>-->
                                                 <asp:Button type="submit" runat="server" class="btn btn-primary" ID="LoginButton" Text="Login" OnClientClick="return validateLogin();"  OnClick="loginButton_Click" />
                                             </div>
                                         </form>

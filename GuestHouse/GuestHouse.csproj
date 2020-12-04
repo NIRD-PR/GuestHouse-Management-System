@@ -110,15 +110,9 @@
     </Content>
     <Content Include="Views\AddBookings.aspx" />
     <Content Include="Views\AddRooms.aspx" />
-    <Content Include="js\dist\jquery.simple-checkbox-table.js" />
-    <Content Include="js\dist\jquery.simple-checkbox-table.min.js" />
-    <Content Include="Views\admin.Master" />
     <Content Include="libman.json" />
     <None Include="packages.config" />
     <Content Include="Views\GeneralReport.aspx" />
-    <Content Include="Views\TrainingReport.aspx" />
-    <Content Include="Views\User\Dashboard.aspx" />
-    <Content Include="Views\User\user.Master" />
     <Content Include="Views\Dashboard.Master" />
     <Content Include="Reports\GeneralReport.xsc">
       <DependentUpon>GeneralReport.xsd</DependentUpon>
@@ -145,14 +139,11 @@
     <Content Include="Views\Bookings.aspx" />
     <Content Include="Views\Dashboard.aspx" />
     <Content Include="Views\PendingRequest.aspx" />
-    <Content Include="Views\PendingRequestTrial.aspx" />
     <Content Include="Views\RoomDetails.aspx" />
     <Content Include="js\scripts.js" />
     <Content Include="Views\Register.aspx" />
     <Content Include="Views\CurrentManagement.aspx" />
     <Content Include="Views\RoomPricing.aspx" />
-    <Content Include="Views\User\UserAddBookings.aspx" />
-    <Content Include="Views\User\UserBookings.aspx" />
     <Content Include="Views\logout.aspx" />
     <Content Include="Web.config" />
     <Content Include="Views\login.aspx" />
@@ -186,13 +177,6 @@
     </Compile>
     <Compile Include="Views\AddRooms.aspx.designer.cs">
       <DependentUpon>AddRooms.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\admin.Master.cs">
-      <DependentUpon>admin.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\admin.Master.designer.cs">
-      <DependentUpon>admin.Master</DependentUpon>
     </Compile>
     <Compile Include="Views\Bookings.aspx.cs">
       <DependentUpon>Bookings.aspx</DependentUpon>
@@ -228,13 +212,6 @@
     </Compile>
     <Compile Include="Views\PendingRequest.aspx.designer.cs">
       <DependentUpon>PendingRequest.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PendingRequestTrial.aspx.cs">
-      <DependentUpon>PendingRequestTrial.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\PendingRequestTrial.aspx.designer.cs">
-      <DependentUpon>PendingRequestTrial.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\RoomDetails.aspx.cs">
       <DependentUpon>RoomDetails.aspx</DependentUpon>
@@ -272,41 +249,6 @@
     </Compile>
     <Compile Include="Views\RoomPricing.aspx.designer.cs">
       <DependentUpon>RoomPricing.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\TrainingReport.aspx.cs">
-      <DependentUpon>TrainingReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\TrainingReport.aspx.designer.cs">
-      <DependentUpon>TrainingReport.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\User\Dashboard.aspx.cs">
-      <DependentUpon>Dashboard.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\User\Dashboard.aspx.designer.cs">
-      <DependentUpon>Dashboard.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\User\user.Master.cs">
-      <DependentUpon>user.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\User\user.Master.designer.cs">
-      <DependentUpon>user.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Views\User\UserAddBookings.aspx.cs">
-      <DependentUpon>UserAddBookings.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\User\UserAddBookings.aspx.designer.cs">
-      <DependentUpon>UserAddBookings.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\User\UserBookings.aspx.cs">
-      <DependentUpon>UserBookings.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\User\UserBookings.aspx.designer.cs">
-      <DependentUpon>UserBookings.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\logout.aspx.cs">
       <DependentUpon>logout.aspx</DependentUpon>

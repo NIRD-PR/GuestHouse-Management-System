@@ -59,7 +59,7 @@
             //});
 
             $('#registrationForm').submit(function (e) {
-                console.log("reaches here");
+                //console.log("reaches here");
                 e.preventDefault();
                 if ($('#inputPassword').val() != $('#inputConfirmPassword').val()) {
                     alert('Password and ConfirmPassword are not the same!');

@@ -26,7 +26,7 @@
                 </tr>
               </thead>
               <tbody id="managementinfo">
-
+                 
               </tbody>
             </table>
           </div>

@@ -21,7 +21,7 @@ namespace GuestHouse.Views
             //bool isLoggedIn = (Session["user"] == null ? false : true);
             //if (!isLoggedIn)
             //{
-            //    Response.Redirect("login.aspx");
+            //    Response.Redirect("logout.aspx");
             //}
 
             if (!IsPostBack)

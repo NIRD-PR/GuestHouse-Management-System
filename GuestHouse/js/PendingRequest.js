@@ -27,15 +27,15 @@ $(document).ready(function () {
         temp += '<td name="selectPrimaryRole" class="required">';
         temp += '<select class="btn btn-light btn-sm roles">';
         temp += '<option value=""><--Select--></option>';
-        temp += '<option value="">Admin</option>';
-        temp += '<option value="">Reception</option>';
+        temp += '<option value="admin">Admin</option>';
+        temp += '<option value="reception">Reception</option>';
         temp += '</select>';
         temp += '</td>';
         temp += '<td name="selectSecondaryRole">';
         temp += '<select class="btn btn-light btn-sm roles">';
         temp += '<option value=""><--Select--></option>';
-        temp += '<option value="">Admin</option>';
-        temp += '<option value="">Reception</option>';
+        temp += '<option value="admin">Admin</option>';
+        temp += '<option value="reception">Reception</option>';
         temp += '</select>';
         temp += '</td>';
         temp += '<td>';
@@ -123,7 +123,7 @@ function rejectRowfxn(cntx) {
     var email = $(cntx).closest("tr").find('td[name = "email"]').text();
     //console.log(email);
     if (email) {
-        alert("Are you sure you want to REJECT this request?");
+        confirm("Are you sure you want to REJECT this request?");
         rejectRequest(email, cntx);
     }
 }
@@ -160,11 +160,11 @@ function acceptRequest(email, primaryRole, secondaryRole, cntx) {
 }
 
 function acceptRowfxn(cntx) {
-    //console.log("acceptRowfxn");
+    console.log("acceptRowfxn");
     var select = $(cntx).closest("tr").find("td[name = 'selectPrimaryRole']").find("select");
-    //console.log(select);
+    console.log(select);
     var primaryRole = select.val();
-    //console.log(primaryRole);
+    console.log(primaryRole);
     if (!primaryRole) {
         alert("Please Select a Primary Role!");
         select.focus();
@@ -177,7 +177,7 @@ function acceptRowfxn(cntx) {
     var email = $(cntx).closest("tr").find('td[name = "email"]').text();
     //console.log(email);
     if (email) {
-        alert("Are you sure you want to ACCEPT this request?");
+        confirm("Are you sure you want to ACCEPT this request?");
         acceptRequest(email, primaryRole, secondaryRole, cntx);
     }    
 }
