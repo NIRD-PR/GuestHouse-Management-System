@@ -14,6 +14,12 @@ namespace GuestHouse.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            bool isLoggedIn = (Session["user"] == null ? false : true);
+            if (!isLoggedIn)
+            {
+                Response.Redirect("logout.aspx");
+            }
+
             LoginUser user = Session["user"] as LoginUser;
             if (!user.HasPrimaryRole("admin"))
             {

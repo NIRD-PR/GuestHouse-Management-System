@@ -116,6 +116,7 @@
     <Content Include="libman.json" />
     <None Include="packages.config" />
     <Content Include="Views\GeneralReport.aspx" />
+    <Content Include="Views\TrainingReport.aspx" />
     <Content Include="Views\User\Dashboard.aspx" />
     <Content Include="Views\User\user.Master" />
     <Content Include="Views\Dashboard.Master" />
@@ -271,6 +272,13 @@
     </Compile>
     <Compile Include="Views\RoomPricing.aspx.designer.cs">
       <DependentUpon>RoomPricing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TrainingReport.aspx.cs">
+      <DependentUpon>TrainingReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\TrainingReport.aspx.designer.cs">
+      <DependentUpon>TrainingReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\User\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>

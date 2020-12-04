@@ -27,12 +27,16 @@
         temp += '<td name="selectPrimaryRole" class="required" hidden>';
         temp += '<select class="btn btn-light btn-sm roles">';
         temp += '<option value=""><--Select--></option>';
+        temp += '<option value="">Admin</option>';
+        temp += '<option value="">Reception</option>';
         temp += '</select>';
         temp += '</td>';
         var temp2 = '';
         temp2 += '<td name="selectSecondaryRole" hidden>';
         temp2 += '<select class="btn btn-light btn-sm roles">';
         temp2 += '<option value=""><--Select--></option>';
+        temp2 += '<option value="">Admin</option>';
+        temp2 += '<option value="">Reception</option>';
         temp2 += '</select>';
         temp2 += '</td>';
         temp2 += '<td name="defaultAction">';
@@ -89,38 +93,42 @@
         });
     }
 
-    //driver code
-    ajaxRoles().then((data) => updateSelect(data.d));
+    ////driver code
+    //ajaxRoles().then((data) => updateSelect(data.d));
 
     // ajax function to retrieve roles
-    async function ajaxRoles() {
-        const result = await $.ajax({
-            type: "POST",
-            url: "CurrentManagement.aspx/GetRoles",
-            data: "{}",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json"
-        });
-        return result;
-    }
+    //async function ajaxRoles() {
+    //    const result = await $.ajax({
+    //        type: "POST",
+    //        url: "CurrentManagement.aspx/GetRoles",
+    //        data: "{}",
+    //        contentType: "application/json; charset=utf-8",
+    //        dataType: "json"
+    //    });
+    //    return result;
+    //}
 
-    function updateSelect(data) {
-        var roles = $.parseJSON(data);
-        //console.log(roles);
-        var select = $(".roles");
-        $.each(roles.Table, function (key, val) {
-            //console.log(val.Role);
-            select.append(
-                $("<option></option>").val(val.Role).html(val.Role)
-            );
-        });
-    }
+    //function updateSelect(data) {
+    //    var roles = $.parseJSON(data);
+    //    //console.log(roles);
+    //    var select = $(".roles");
+    //    $.each(roles.Table, function (key, val) {
+    //        //console.log(val.Role);
+    //        select.append(
+    //            $("<option></option>").val(val.Role).html(val.Role)
+    //        );
+    //    });
+    //}
+
+
+
+
 });
 
 // ajax function to reject request
 function deleteRequest(email, cntx) {
-    console.log("inside delete");
-    console.log(email);
+    //console.log("inside delete");
+    //console.log(email);
 
     var postData = {
         email: email
@@ -144,9 +152,9 @@ function deleteRequest(email, cntx) {
 }
 
 function deleteRowfxn(cntx) {
-    console.log("deleteRowfxn");
+    //console.log("deleteRowfxn");
     var email = $(cntx).closest("tr").find('td[name = "email"]').text();
-    console.log(email);
+    //console.log(email);
     if (email) {
         alert("Are you sure you want to delete?");
         deleteRequest(email, cntx);
@@ -155,10 +163,10 @@ function deleteRowfxn(cntx) {
 
 // ajax function to accept request
 function updateRequest(email, primaryRole, secondaryRole, cntx) {
-    console.log("inside accept");
-    console.log(email);
-    console.log(primaryRole);
-    console.log(secondaryRole);
+    //console.log("inside accept");
+    //console.log(email);
+    //console.log(primaryRole);
+    //console.log(secondaryRole);
 
     var postData = {
         email: email,
@@ -176,7 +184,6 @@ function updateRequest(email, primaryRole, secondaryRole, cntx) {
         success: function () {
             flag = false;
             toggleAction(cntx);
-            // TODO: update the front-end table
             var displayPrimary = $(cntx).closest("tr").find("td[name = 'displayPrimaryRole']").find("span.displayPrimaryRole");
             //console.log(displayPrimary);
             displayPrimary.html(primaryRole);
@@ -199,7 +206,7 @@ function acceptfxn(cntx) {
     var select = $(cntx).closest("tr").find("td[name = 'selectPrimaryRole']").find("select");
     //console.log(select);
     var primaryRole = select.val();
-    console.log(primaryRole)
+    //console.log(primaryRole);
     if (!primaryRole) {
         alert("Please Select a Primary Role!");
         select.focus();
@@ -207,10 +214,10 @@ function acceptfxn(cntx) {
     }
 
     var secondaryRole = $(cntx).closest("tr").find("td[name = 'selectSecondaryRole']").find("select").val();
-    console.log(secondaryRole);
+    //console.log(secondaryRole);
 
     var email = $(cntx).closest("tr").find('td[name = "email"]').text();
-    console.log(email);
+    //console.log(email);
     if (email) {
         alert("Are you sure you want to EDIT roles?");
         updateRequest(email, primaryRole, secondaryRole, cntx);

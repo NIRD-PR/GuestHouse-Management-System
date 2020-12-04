@@ -39,7 +39,7 @@ namespace GuestHouse.Views
                         
                         sc.Parameters.AddWithValue("@FirstName", user.FirstName.Trim());
                         sc.Parameters.AddWithValue("@LastName", user.LastName.Trim());
-                        sc.Parameters.AddWithValue("@Email", user.Email.Trim());
+                        sc.Parameters.AddWithValue("@Email", user.Email.Trim().ToLower());
                         sc.Parameters.AddWithValue("@MobileNo", user.MobileNo.Trim());
                         sc.Parameters.AddWithValue("@ID", user.ID.Trim());
                         var password = FormsAuthentication.HashPasswordForStoringInConfigFile(user.Password.Trim(), "SHA1");

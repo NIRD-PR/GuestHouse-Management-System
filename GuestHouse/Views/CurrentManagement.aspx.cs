@@ -16,6 +16,12 @@ namespace GuestHouse.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            bool isLoggedIn = (Session["user"] == null ? false : true);
+            if (!isLoggedIn)
+            {
+                Response.Redirect("logout.aspx");
+            }
+
             LoginUser user = Session["user"] as LoginUser;
 
             if (!user.HasPrimaryRole("admin"))
@@ -43,23 +49,23 @@ namespace GuestHouse.Views
             return json;
         }
 
-        [System.Web.Services.WebMethod]
-        public static string GetRoles()
-        {
-            string DBCS = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
+        //[System.Web.Services.WebMethod]
+        //public static string GetRoles()
+        //{
+        //    string DBCS = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
 
-            SqlConnection con = new SqlConnection(DBCS);
-            SqlDataAdapter da = new SqlDataAdapter("Select * from Master.Roles", con);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
+        //    SqlConnection con = new SqlConnection(DBCS);
+        //    SqlDataAdapter da = new SqlDataAdapter("Select * from Master.Roles", con);
+        //    DataSet ds = new DataSet();
+        //    da.Fill(ds);
 
-            string json = JsonConvert.SerializeObject(ds, Formatting.Indented);
+        //    string json = JsonConvert.SerializeObject(ds, Formatting.Indented);
 
-            System.Diagnostics.Debug.WriteLine(json);
-            System.Diagnostics.Debug.WriteLine("function call");
+        //    System.Diagnostics.Debug.WriteLine(json);
+        //    System.Diagnostics.Debug.WriteLine("function call");
 
-            return json;
-        }
+        //    return json;
+        //}
 
         [System.Web.Services.WebMethod]
         public static void UpdateRequest(string email, string primaryRole, string secondaryRole = null) {
@@ -79,9 +85,9 @@ namespace GuestHouse.Views
                     };
 
                     sc.Parameters.AddWithValue("@Action", "EDIT");
-                    sc.Parameters.AddWithValue("@Email", email);
-                    sc.Parameters.AddWithValue("@PrimaryRole", primaryRole);
-                    sc.Parameters.AddWithValue("@SecondaryRole", secondaryRole);
+                    sc.Parameters.AddWithValue("@Email", email.Trim().ToLower());
+                    sc.Parameters.AddWithValue("@PrimaryRole", primaryRole.Trim().ToLower());
+                    sc.Parameters.AddWithValue("@SecondaryRole", secondaryRole.Trim().ToLower());
                     con.Open();
                     sc.ExecuteNonQuery();
                     con.Close();
@@ -114,7 +120,7 @@ namespace GuestHouse.Views
                     };
 
                     sc.Parameters.AddWithValue("@Action", "DELETE");
-                    sc.Parameters.AddWithValue("@Email", email);
+                    sc.Parameters.AddWithValue("@Email", email.Trim().ToLower());
                     con.Open();
                     sc.ExecuteNonQuery();
                     con.Close();

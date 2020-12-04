@@ -39,9 +39,33 @@
         */
 
         $(document).ready(function () {
+
+            //$('#registrationForm').validate({
+            //    rules: {
+            //        inputPassword: {
+            //            required: true,
+            //            minlength: 8
+            //        },
+            //        inputConfirmPassword: {
+            //            required: true,
+            //            minlength: 8,
+            //            equalTo: "#password"
+            //        },
+            //        messages: {
+            //            password: " Enter Password",
+            //            confirmpassword: " Enter Confirm Password Same as Password"
+            //        }
+            //    }
+            //});
+
             $('#registrationForm').submit(function (e) {
                 console.log("reaches here");
                 e.preventDefault();
+                if ($('#inputPassword').val() != $('#inputConfirmPassword').val()) {
+                    alert('Password and ConfirmPassword are not the same!');
+                    $('#inputConfirmPassword').focus();
+                    return;
+                }
                 var guest = {};
                 guest.FirstName = $('#inputFirstName').val();
                 guest.LastName = $('#inputLastName').val();
@@ -56,7 +80,8 @@
                     contentType: 'application/json;charset=utf-8',
                     data: JSON.stringify({userData:JSON.parse(JSON.stringify(guest))}),
                     success: function (result) {
-                        alert('success');
+                        alert('Registration Successful!');
+                        ResetInformation();
                     },
                     error: function (result) {
                         alert(result.responseText);
@@ -64,36 +89,19 @@
 
                 });
             });
+
+            function ResetInformation() {
+                $("#inputFirstName").val('');
+                $("#inputLastName").val('');
+                $("#inputEmailAddress").val('');
+                $("#inputMobileNumber").val('');
+                $("#inputPersonID").val('');
+                $('#inputPassword').val('');
+                $('#inputConfirmPassword').val('');
+            }
         });
 
     </script>
-        
-    <!--function saveEHdata(fEHPath, jsonObj) {
-        // alert('Call from save ext details : ' + fEHPath);
-        var ddt = JSON.stringify(jsonObj);
-        $.ajax({
-            type: "POST",
-            //url: "../ProjectStaff/PGeneral/services.aspx/SaveExetnDetails",
-            url: "services.aspx/SaveExetnDetails",
-            //url: "../PEmp_PSService/SaveExetnDetails",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            async: false,
-            //data: JSON.stringify({ ExtType: $("#ddlExtType").val(), EHDOE: $('#txtEHDoE').val(), EHDoEB: $('#txtEHDoEB').val(), EHDOEEnd: $("#txtEHDoEEnd").val(), EHNewDesg: $("#txtEHDesg").val(), EHPrevDesg: $('#txtEHPrvDesg').val(), EHNewSal: $('#txtEHNewsal').val(), EHPrevSal: $("#txtEHPrevSal").val(), EHRemarks: $("#txtEHRemarks").val(), EHOOrder: fEHPath }), //
-            data: JSON.stringify({ ServHistory: JSON.parse(ddt) }),
-            processData: false,
-            success: function (result) {
-                alert("Data saved successfully...", "");
-                resetEH();
-                displayEHdata();
-                //checkForallTabsStatus();
-            },
-            error: function (result) {
-                alert(JSON.parse(result.responseText).Message, "alert alert-danger", "");
-            }
-        });
-    } -->
-
 
 </head>
 <body class="bg-primary">
@@ -165,20 +173,6 @@
                     </div>
                 </div>
             </main>
-        </div>
-        <div id="layoutAuthentication_footer">
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">NIRDPR &copy; 2020</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>

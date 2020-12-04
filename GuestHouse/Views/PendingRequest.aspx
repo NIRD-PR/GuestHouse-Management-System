@@ -24,27 +24,7 @@
                 </tr>
               </thead>
               <tbody id="requestinfo">
-				  <tr>
-                    <td>lorem ipsum</td>
-                    <td>lorem ipsum</td>
-                    <td>lorem ipsum</td>
-                    <td name="email">lorem ipsum</td>
-                    <td name="selectPrimaryRole" class="required">
-                        <select class="btn btn-light btn-sm roles">
-                            <option value=""><--Select--></option>
-                            <option value="Admin">Admin</option>
-                            <option value="User">User</option>
-                        </select>
-                    </td>
-                    <td name="selectSecondaryRole">
-                        <select class="btn btn-light btn-sm roles">
-                            <option value=""><--Select--></option>
-                            <option value="Admin">Admin</option>
-                            <option value="User">User</option>
-                        </select>
-                    </td>
-                    <td headers="action"><i class="fa fa-check alert-success" onclick="acceptRowfxn(this)"></i>&nbsp &nbsp<i class="fa fa-trash alert-danger" onclick="rejectRowfxn(this)"></i></td>
-                </tr>
+
               </tbody>
             </table>
           </div>

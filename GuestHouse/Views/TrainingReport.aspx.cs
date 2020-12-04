@@ -11,20 +11,18 @@ using System.Web.UI.WebControls;
 
 namespace GuestHouse.Views
 {
-    public partial class GeneralReport : System.Web.UI.Page
+    public partial class TrainingReport : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             bool isLoggedIn = (Session["user"] == null ? false : true);
-            if (!isLoggedIn) {
+            if (!isLoggedIn)
+            {
                 Response.Redirect("logout.aspx");
             }
 
             LoginUser user = Session["user"] as LoginUser;
-            if(starting_date.Text=="")
-            starting_date.Text= Convert.ToDateTime("10/02/2020").ToString("yyyy-dd-MM");
-            if(ending_date.Text=="")
-            ending_date.Text = DateTime.Today.ToString("yyyy-MM-dd");
+
             if (!user.HasPrimaryRole("admin"))
             {
                 Response.Redirect("logout.aspx");
@@ -38,15 +36,15 @@ namespace GuestHouse.Views
         private void BindReport()
         {
             ReportViewer1.ProcessingMode = ProcessingMode.Local;
-            ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reports/GeneralReport.rdlc");
-          
-            Reports.GeneralReport dsBookings = GetData(Convert.ToDateTime(starting_date.Text, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat), Convert.ToDateTime(ending_date.Text, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat));
+            ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reports/TrainingReport.rdlc");
+
+            Reports.TrainingReport dsBookings = GetData(programName.text());
             ReportDataSource datasource = new ReportDataSource("GeneralReport", dsBookings.Tables[0]);
             ReportViewer1.LocalReport.DataSources.Clear();
             ReportViewer1.LocalReport.DataSources.Add(datasource);
         }
 
-        private Reports.GeneralReport GetData(DateTime start,DateTime end)
+        private Reports.TrainingReport GetData(string programName)
         {
             string conString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
             using (SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Bookings WHERE BookingFrom>=@Start AND BookingFrom<=@End+1"))
@@ -57,7 +55,7 @@ namespace GuestHouse.Views
                     {
                         cmd.Connection = con;
                         sda.SelectCommand = cmd;
-                        cmd.Parameters.AddWithValue("@Start",start);
+                        cmd.Parameters.AddWithValue("@Start", start);
                         cmd.Parameters.AddWithValue("@End", end);
                         using (Reports.GeneralReport dsBookings = new Reports.GeneralReport())
                         {
@@ -66,7 +64,7 @@ namespace GuestHouse.Views
                                 sda.Fill(dsBookings, "Bookings");
                                 return dsBookings;
                             }
-                            catch(Exception ex)
+                            catch (Exception ex)
                             {
                                 throw ex;
                             }
@@ -74,11 +72,6 @@ namespace GuestHouse.Views
                     }
                 }
             }
-        }
-
-        protected void TextChanged(object sender, EventArgs e)
-        {
-            this.BindReport();
         }
     }
 }

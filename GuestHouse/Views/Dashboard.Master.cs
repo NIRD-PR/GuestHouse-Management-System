@@ -19,7 +19,7 @@ namespace GuestHouse.Views
             {
                 LoginUser user = Session["user"] as LoginUser;
 
-                if (user.HasPrimaryRole("Admin"))
+                if (user.HasPrimaryRole("admin"))
                 {
                     rdts.Visible = true;
                     rbkg.Visible = true;
@@ -27,16 +27,16 @@ namespace GuestHouse.Views
                     rmpr.Visible = true;
                     report.Visible = true;
                 }
-                else if (user.HasPrimaryRole("user"))
+                else if (user.HasPrimaryRole("reception"))
                 {
                     rbkg.Visible = true;
-                    if (user.HasSecondaryRole("Admin")) {
+                    if (user.HasSecondaryRole("admin")) {
                         rdts.Visible = true;
                     }
                 }
             }
             else {
-                Response.Redirect("Login.aspx");
+                Response.Redirect("login.aspx");
             }
         }
     }

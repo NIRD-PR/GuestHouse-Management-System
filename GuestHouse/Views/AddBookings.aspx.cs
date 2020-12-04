@@ -18,6 +18,12 @@ namespace GuestHouse.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //bool isLoggedIn = (Session["user"] == null ? false : true);
+            //if (!isLoggedIn)
+            //{
+            //    Response.Redirect("login.aspx");
+            //}
+
             if (!IsPostBack)
             {
                 ddlBT.DataSource = getData("spGetBookingType", null);

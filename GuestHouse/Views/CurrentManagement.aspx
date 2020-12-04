@@ -26,38 +26,7 @@
                 </tr>
               </thead>
               <tbody id="managementinfo">
-				  <tr>
-                    <td>lorem ipsum</td>
-                    <td>lorem ipsum</td>
-                    <td>lorem ipsum</td>
-                    <td name="email">lorem ipsum</td>
-                    <td name="displayPrimaryRole"><span class="displayPrimaryRole">Admin</span></td>
-                    <td name="selectPrimaryRole" class="required" hidden>
-                        <select class="btn btn-light btn-sm roles">
-                            <option value=""><--Select--></option>
-                            <option value="Admin">Admin</option>
-                            <option value="User">User</option>
-                        </select>
-                    </td>
-                    <td name="displaySecondaryRole">User</td>
-                    <td name="selectSecondaryRole" hidden>
-                        <select class="btn btn-light btn-sm roles">
-                            <option value=""><--Select--></option>
-                            <option value="Admin">Admin</option>
-                            <option value="User">User</option>
-                        </select>
-                    </td>                    
-                    <td name="defaultAction">
-                        <i class="fa fa-edit alert-success" onclick="editRowfxn(this)"></i>
-                        &nbsp
-                        <i class="fa fa-trash alert-danger" onclick="deleteRowfxn(this)"></i>
-                    </td>
-                    <td name="editAction" hidden>
-                        <i class="fa fa-check alert-success" onclick="acceptfxn(this)"></i>
-                        &nbsp
-                        <i class="fa fa-close alert-danger" onclick="canclefxn(this)"></i>
-                    </td>
-                </tr>
+
               </tbody>
             </table>
           </div>
