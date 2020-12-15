@@ -18,6 +18,7 @@ namespace GuestHouse.Views
             if (!this.IsPostBack)
             {
                 DataTable dummy = new DataTable();
+                dummy.Columns.Add("BookingID");
                 dummy.Columns.Add("FirstName");
                 dummy.Columns.Add("LastName");
                 dummy.Columns.Add("BookingType");
@@ -52,7 +53,7 @@ namespace GuestHouse.Views
             string constr = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT B.FirstName, B.LastName,T.BookingType, B.NoOfMembers, B.BookingFrom,B.BookingTo,B.PhoneNo,B.Address,B.TotalAmount,B.TrainingName,B.TrainingDirector,B.TrainingFrom,B.TrainingTo,B.PurposeOfVisit,B.VisitingWhom,B.CenterVisiting FROM dbo.Bookings B inner join Master.BookingType T on B.BookingTypeID=T.BookingTypeId where B.isActive=1", con))
+                using (SqlCommand cmd = new SqlCommand("SELECT B.BookingID,B.FirstName, B.LastName,T.BookingType, B.NoOfMembers, B.BookingFrom,B.BookingTo,B.PhoneNo,B.Address,B.TotalAmount,B.TrainingName,B.TrainingDirector,B.TrainingFrom,B.TrainingTo,B.PurposeOfVisit,B.VisitingWhom,B.CenterVisiting FROM dbo.Bookings B inner join Master.BookingType T on B.BookingTypeID=T.BookingTypeId where B.isActive=1", con))
                 {
                     con.Open();
                     using (SqlDataReader sdr = cmd.ExecuteReader())
@@ -61,6 +62,7 @@ namespace GuestHouse.Views
                         {
                             bookings.Add(new GuestHouse.Models.BookingsViewModel
                             {
+                                BookingID=Convert.ToInt32(sdr["BookingID"]),
                                 FirstName = sdr["FirstName"].ToString(),
                                 LastName = sdr["LastName"].ToString(),
                                 BookingType=sdr["BookingType"].ToString(),

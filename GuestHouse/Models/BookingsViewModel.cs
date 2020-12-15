@@ -8,6 +8,7 @@ namespace GuestHouse.Models
 {
     public class BookingsViewModel
     {
+        public int BookingID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Name { get; set; }
@@ -15,7 +16,7 @@ namespace GuestHouse.Models
         public string BookingType { get; set; }
         public int NoOfMembers { get; set; }
         public string RoomNumber { get; set; }
-        public int BookingID { get; set; }
+        
         public int RoomID { get; set; }
         public DateTime BookingTo { get; set; }
         public DateTime BookingFrom { get; set; }
